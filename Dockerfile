@@ -2,18 +2,19 @@
 
 # 1) Зависимости
 FROM node:22-alpine AS deps
-RUN corepack enable
+ENV COREPACK_ENABLE_DOWNLOAD_PROMPT=0
+RUN corepack enable && corepack prepare pnpm@9.12.1 --activate
 WORKDIR /app
 COPY package.json pnpm-lock.yaml ./
 RUN pnpm install --frozen-lockfile
 
 # 2) Сборка (standalone)
 FROM node:22-alpine AS build
-RUN corepack enable
+ENV COREPACK_ENABLE_DOWNLOAD_PROMPT=0 NEXT_TELEMETRY_DISABLED=1
+RUN corepack enable && corepack prepare pnpm@9.12.1 --activate
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-ENV NEXT_TELEMETRY_DISABLED=1
 RUN pnpm build
 
 # 3) Рантайм — минимальный образ только с сервером

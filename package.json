@@ -2,6 +2,10 @@
   "name": "mdsupply",
   "version": "0.1.0",
   "private": true,
+  "packageManager": "pnpm@9.12.1",
+  "pnpm": {
+    "onlyBuiltDependencies": ["sharp", "unrs-resolver"]
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
