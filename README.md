@@ -74,5 +74,13 @@ src/
 
 ## Деплой
 
-Оптимально — Vercel (нативно для Next.js) либо любой Node-хостинг (`pnpm build && pnpm start`).
-Обязательно настроить HTTPS/SSL и переменные для отправки заявок.
+CI/CD на собственный VPS через Docker: push в `main` → GitHub Actions собирает образ → доставка
+по SSH → `docker compose up` за Caddy (авто-SSL). Полная инструкция и привязка домена — в
+[`DEPLOY.md`](./DEPLOY.md).
+
+Локально образ можно собрать и запустить так:
+
+```bash
+docker build -t md-supply .
+docker run -p 3000:3000 md-supply
+```

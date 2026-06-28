@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useCallback, useContext, useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, m } from "framer-motion";
 import { X } from "lucide-react";
 import { LeadForm, type LeadKind } from "./lead-form";
 
@@ -56,14 +56,14 @@ export function LeadProvider({ children }: { children: React.ReactNode }) {
       {children}
       <AnimatePresence>
         {kind && (
-          <motion.div
+          <m.div
             className="fixed inset-0 z-[60] flex items-end justify-center p-0 sm:items-center sm:p-6"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
             <div className="absolute inset-0 bg-ink/60 backdrop-blur-sm" onClick={close} />
-            <motion.div
+            <m.div
               role="dialog"
               aria-modal="true"
               aria-label={titles[kind].title}
@@ -86,8 +86,8 @@ export function LeadProvider({ children }: { children: React.ReactNode }) {
                 <p className="mt-1.5 text-sm text-fg-muted">{titles[kind].subtitle}</p>
               </div>
               <LeadForm kind={kind} />
-            </motion.div>
-          </motion.div>
+            </m.div>
+          </m.div>
         )}
       </AnimatePresence>
     </LeadContext.Provider>

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, m } from "framer-motion";
 import { ChevronDown, Mail, Phone, X } from "lucide-react";
 import { Logo } from "@/components/logo";
 import { ThemeToggle } from "./theme-toggle";
@@ -19,14 +19,14 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
   return (
     <AnimatePresence>
       {open && (
-        <motion.div
+        <m.div
           className="fixed inset-0 z-50 xl:hidden"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
         >
           <div className="absolute inset-0 bg-ink/50 backdrop-blur-sm" onClick={onClose} />
-          <motion.div
+          <m.div
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
@@ -61,7 +61,7 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
                         </button>
                         <AnimatePresence>
                           {servicesOpen && (
-                            <motion.ul
+                            <m.ul
                               initial={{ height: 0, opacity: 0 }}
                               animate={{ height: "auto", opacity: 1 }}
                               exit={{ height: 0, opacity: 0 }}
@@ -79,7 +79,7 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
                                   </Link>
                                 </li>
                               ))}
-                            </motion.ul>
+                            </m.ul>
                           )}
                         </AnimatePresence>
                       </div>
@@ -114,8 +114,8 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
                 Заказать звонок
               </LeadButton>
             </div>
-          </motion.div>
-        </motion.div>
+          </m.div>
+        </m.div>
       )}
     </AnimatePresence>
   );

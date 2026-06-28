@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, m } from "framer-motion";
 import { Plus } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -30,7 +30,7 @@ export function FaqAccordion({ items }: { items: { q: string; a: string }[] }) {
             </button>
             <AnimatePresence initial={false}>
               {isOpen && (
-                <motion.div
+                <m.div
                   initial={{ height: 0, opacity: 0 }}
                   animate={{ height: "auto", opacity: 1 }}
                   exit={{ height: 0, opacity: 0 }}
@@ -38,7 +38,7 @@ export function FaqAccordion({ items }: { items: { q: string; a: string }[] }) {
                   className="overflow-hidden"
                 >
                   <p className="px-6 pb-5 text-[15px] leading-relaxed text-fg-muted">{item.a}</p>
-                </motion.div>
+                </m.div>
               )}
             </AnimatePresence>
           </div>

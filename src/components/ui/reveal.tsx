@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 export function Reveal({
@@ -17,7 +17,7 @@ export function Reveal({
   as?: "div" | "li" | "span";
 }) {
   const reduce = useReducedMotion();
-  const MotionTag = motion[as];
+  const MotionTag = m[as];
   return (
     <MotionTag
       className={className}
@@ -41,7 +41,7 @@ export function RevealGroup({
   stagger?: number;
 }) {
   return (
-    <motion.div
+    <m.div
       className={cn(className)}
       initial="hidden"
       whileInView="show"
@@ -52,7 +52,7 @@ export function RevealGroup({
       }}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 }
 
@@ -67,7 +67,7 @@ export function RevealItem({
 }) {
   const reduce = useReducedMotion();
   return (
-    <motion.div
+    <m.div
       className={className}
       variants={{
         hidden: reduce ? { opacity: 0 } : { opacity: 0, y },
@@ -75,6 +75,6 @@ export function RevealItem({
       }}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 }

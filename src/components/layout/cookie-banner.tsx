@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, m } from "framer-motion";
 import { Button } from "@/components/ui/button";
 
 const KEY = "mdsupply-cookie-consent";
@@ -29,7 +29,7 @@ export function CookieBanner() {
   return (
     <AnimatePresence>
       {show && (
-        <motion.div
+        <m.div
           initial={{ y: 80, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 80, opacity: 0 }}
@@ -49,7 +49,7 @@ export function CookieBanner() {
               Принять
             </Button>
           </div>
-        </motion.div>
+        </m.div>
       )}
     </AnimatePresence>
   );

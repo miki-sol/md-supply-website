@@ -1,7 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { ArrowRight, Check, FileText, PackageCheck } from "lucide-react";
+import { m } from "framer-motion";
+import { ArrowRight, Check, PackageCheck } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { ButtonLink } from "@/components/ui/button";
 import { LeadButton } from "@/components/forms/lead-button";
@@ -30,7 +30,7 @@ export function Hero() {
       <Container>
         <div className="relative grid items-center gap-10 py-14 sm:gap-12 sm:py-24 lg:grid-cols-[1.15fr_0.85fr] lg:py-32">
           <div>
-            <motion.h1
+            <m.h1
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.08, ease }}
@@ -41,9 +41,9 @@ export function Hero() {
                 <span className="relative z-10">широкого ассортимента</span>
               </span>{" "}
               товаров
-            </motion.h1>
+            </m.h1>
 
-            <motion.p
+            <m.p
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.16, ease }}
@@ -52,9 +52,9 @@ export function Hero() {
               MD Supply поставляет товары для розницы, HoReCa и интернет-магазинов по всей
               Беларуси — с надёжной логистикой, прозрачными условиями и полным пакетом
               документов.
-            </motion.p>
+            </m.p>
 
-            <motion.div
+            <m.div
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.24, ease }}
@@ -66,13 +66,10 @@ export function Hero() {
               <ButtonLink href="/catalog" size="lg" variant="outline" className="border-white/30 text-white hover:border-white hover:text-white">
                 <PackageCheck className="h-4 w-4" /> Смотреть каталог
               </ButtonLink>
-              <ButtonLink href="/presentation.pdf" size="lg" variant="ghost" className="text-white/80 hover:bg-white/10 hover:text-white">
-                <FileText className="h-4 w-4" /> Презентация
-              </ButtonLink>
-            </motion.div>
+            </m.div>
           </div>
 
-          <motion.div
+          <m.div
             initial={{ opacity: 0, scale: 0.92, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease }}
@@ -97,7 +94,7 @@ export function Hero() {
                 ))}
               </ul>
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </Container>
     </section>

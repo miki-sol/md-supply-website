@@ -10,7 +10,6 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  NODE_VERSION: "22"
   APP_DIR: /opt/md-supply
 
 jobs:
@@ -20,32 +19,20 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build image
+        uses: docker/build-push-action@v6
         with:
-          version: 9
+          context: .
+          load: true
+          tags: md-supply:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: pnpm
-
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: Lint
-        run: pnpm lint
-
-      - name: Build (standalone)
-        run: pnpm build
-
-      - name: Assemble release bundle
-        run: |
-          cp -r public .next/standalone/public
-          cp -r .next/static .next/standalone/.next/static
-          cp ecosystem.config.cjs .next/standalone/ecosystem.config.cjs
-          tar -C .next/standalone -czf release.tgz .
+      - name: Save image to tarball
+        run: docker save md-supply:latest | gzip > image.tgz
 
       - name: Copy bundle to server
         uses: appleboy/scp-action@v0.1.7
@@ -54,10 +41,10 @@ jobs:
           username: ${{ secrets.DEPLOY_USER }}
           key: ${{ secrets.DEPLOY_SSH_KEY }}
           port: ${{ secrets.DEPLOY_PORT || '22' }}
-          source: release.tgz
-          target: /tmp
+          source: "image.tgz,docker-compose.yml,Caddyfile"
+          target: ${{ env.APP_DIR }}
 
-      - name: Release and reload
+      - name: Load image and (re)start
         uses: appleboy/ssh-action@v1.2.0
         with:
           host: ${{ secrets.DEPLOY_HOST }}
@@ -66,20 +53,9 @@ jobs:
           port: ${{ secrets.DEPLOY_PORT || '22' }}
           script: |
             set -euo pipefail
-            APP_DIR=${{ env.APP_DIR }}
-            RELEASE="$APP_DIR/releases/${{ github.sha }}"
-
-            mkdir -p "$RELEASE"
-            tar -xzf /tmp/release.tgz -C "$RELEASE"
-            rm -f /tmp/release.tgz
-
-            ln -sfn "$RELEASE" "$APP_DIR/current"
-
-            cd "$APP_DIR"
-            pm2 startOrReload "$APP_DIR/current/ecosystem.config.cjs" --update-env
-            pm2 save
-
-            # Оставляем 5 последних релизов
-            ls -1dt "$APP_DIR"/releases/*/ | tail -n +6 | xargs -r rm -rf
-
+            cd ${{ env.APP_DIR }}
+            gunzip -c image.tgz | docker load
+            rm -f image.tgz
+            docker compose up -d
+            docker image prune -f
             echo "Deployed ${{ github.sha }}"

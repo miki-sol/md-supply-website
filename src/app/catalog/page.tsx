@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Download, FileSpreadsheet, FileText } from "lucide-react";
+import { Download, FileSpreadsheet } from "lucide-react";
 import { PageHeader } from "@/components/layout/page-header";
 import { Section, SectionHeader } from "@/components/ui/section";
 import { Container } from "@/components/ui/container";
@@ -64,18 +64,12 @@ export default function CatalogPage() {
       {/* Скачать документы */}
       <section className="border-y border-border-subtle bg-bg-soft py-16">
         <Container>
-          <Reveal className="grid gap-5 md:grid-cols-2">
+          <Reveal>
             <DownloadCard
               icon={<FileSpreadsheet className="h-7 w-7 text-red" />}
               title="Прайс-лист (PDF)"
               text="Актуальные цены и позиции для оптовых клиентов. Обновляется регулярно."
               href="/price-list.pdf"
-            />
-            <DownloadCard
-              icon={<FileText className="h-7 w-7 text-red" />}
-              title="Каталог компании (PDF)"
-              text="Полная презентация ассортимента и условий сотрудничества MD Supply."
-              href="/presentation.pdf"
             />
           </Reveal>
           <div className="mt-8 rounded-card border border-border-subtle bg-surface p-6 text-center sm:p-8">

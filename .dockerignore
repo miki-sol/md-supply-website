@@ -1,0 +1,14 @@
+node_modules
+.next
+.git
+.github
+npm-debug.log*
+.DS_Store
+*.local
+.env*
+deploy
+DEPLOY.md
+README.md
+ТЗ_сайт_MD_Supply.docx
+md_supply.jpg
+logo MD.svg

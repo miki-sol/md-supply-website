@@ -1,53 +1,41 @@
 #!/usr/bin/env bash
-# Однократная настройка чистого VPS (Ubuntu/Debian) под деплой MD Supply.
+# Однократная настройка чистого VPS (Ubuntu/Debian) под Docker-деплой MD Supply.
 # Запускать на сервере от root:  sudo bash bootstrap.sh <deploy_user>
 set -euo pipefail
 
 DEPLOY_USER="${1:-deploy}"
 APP_DIR="/opt/md-supply"
-NODE_MAJOR=22
 
-echo ">> Обновление пакетов"
+echo ">> Базовые пакеты + firewall"
 apt-get update -y
-apt-get install -y curl ca-certificates gnupg ufw nginx
+apt-get install -y curl ca-certificates ufw
 
-echo ">> Установка Node.js ${NODE_MAJOR}"
-if ! command -v node >/dev/null || [ "$(node -v | cut -d. -f1 | tr -d v)" -lt "$NODE_MAJOR" ]; then
-  curl -fsSL "https://deb.nodesource.com/setup_${NODE_MAJOR}.x" | bash -
-  apt-get install -y nodejs
+echo ">> Установка Docker (engine + compose plugin)"
+if ! command -v docker >/dev/null; then
+  curl -fsSL https://get.docker.com | sh
 fi
-
-echo ">> Установка pnpm и pm2"
-npm install -g pnpm pm2
 
 echo ">> Пользователь деплоя: ${DEPLOY_USER}"
 if ! id "$DEPLOY_USER" >/dev/null 2>&1; then
   adduser --disabled-password --gecos "" "$DEPLOY_USER"
 fi
+usermod -aG docker "$DEPLOY_USER"
 
 echo ">> Каталог приложения: ${APP_DIR}"
-mkdir -p "$APP_DIR/releases"
+mkdir -p "$APP_DIR"
 chown -R "$DEPLOY_USER:$DEPLOY_USER" "$APP_DIR"
 
-echo ">> Автозапуск pm2 для ${DEPLOY_USER}"
-env PATH="$PATH:/usr/bin" pm2 startup systemd -u "$DEPLOY_USER" --hp "/home/$DEPLOY_USER" | tail -n 1 | bash || true
-
-echo ">> Nginx reverse proxy"
-cp "$(dirname "$0")/nginx/md-supply.conf" /etc/nginx/sites-available/md-supply
-ln -sfn /etc/nginx/sites-available/md-supply /etc/nginx/sites-enabled/md-supply
-rm -f /etc/nginx/sites-enabled/default
-nginx -t && systemctl reload nginx
-
-echo ">> Firewall"
+echo ">> Firewall (SSH + HTTP/HTTPS)"
 ufw allow OpenSSH
-ufw allow 'Nginx Full'
+ufw allow 80/tcp
+ufw allow 443/tcp
 ufw --force enable
 
 echo ""
 echo "================ ГОТОВО ================"
-echo "1. Убедитесь, что публичный ключ из секрета DEPLOY_SSH_KEY добавлен в"
+echo "1. Публичный ключ из секрета DEPLOY_SSH_KEY должен быть в"
 echo "   /home/${DEPLOY_USER}/.ssh/authorized_keys"
-echo "2. Пропишите домен в /etc/nginx/sites-available/md-supply (server_name)"
-echo "3. SSL:  sudo apt install certbot python3-certbot-nginx && sudo certbot --nginx -d mdsupply.by -d www.mdsupply.by"
-echo "4. Сделайте push в main — пайплайн задеплоит приложение на :3000"
+echo "2. Наведите домен (A-запись) на IP этого сервера и впишите его в Caddyfile."
+echo "3. Сделайте push в main — пайплайн соберёт образ, привезёт его и поднимет docker compose."
+echo "   Caddy сам выпустит SSL-сертификат, как только домен заработает."
 echo "========================================"

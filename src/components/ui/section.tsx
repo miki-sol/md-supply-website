@@ -41,9 +41,15 @@ export function SectionHeader({
       )}
     >
       {eyebrow && (
-        <span className="mb-3 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-red">
+        <span
+          className={cn(
+            "mb-3 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-red",
+            align === "center" && "justify-center",
+          )}
+        >
           <span className="h-px w-6 bg-red" />
           {eyebrow}
+          <span className="h-px w-6 bg-red" />
         </span>
       )}
       <h2 className="text-[1.625rem] font-extrabold leading-tight text-fg sm:text-4xl">

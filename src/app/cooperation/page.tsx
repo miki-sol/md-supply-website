@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
-import { Check, Download, Handshake, Store, Truck } from "lucide-react";
+import { Check, Handshake, Store, Truck } from "lucide-react";
 import { PageHeader } from "@/components/layout/page-header";
 import { Section, SectionHeader } from "@/components/ui/section";
 import { Container } from "@/components/ui/container";
-import { ButtonLink } from "@/components/ui/button";
 import { LeadForm } from "@/components/forms/lead-form";
 import { Reveal } from "@/components/ui/reveal";
 import { cooperationSteps } from "@/lib/content";
@@ -38,11 +37,8 @@ export default function CooperationPage() {
         title="Сотрудничество"
         description="Работаем с оптовыми клиентами и производителями. Прозрачные условия, надёжные поставки и поддержка на каждом этапе."
         crumbs={[{ title: "Сотрудничество" }]}
-      >
-        <ButtonLink href="/presentation.pdf" size="lg" className="bg-white text-ink hover:bg-white/90">
-          <Download className="h-4 w-4" /> Скачать презентацию
-        </ButtonLink>
-      </PageHeader>
+      />
+
 
       <Section>
         <div className="grid gap-5 lg:grid-cols-2">

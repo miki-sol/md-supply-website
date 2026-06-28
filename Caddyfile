@@ -1,0 +1,13 @@
+# Замените домены на свои. Caddy сам выпустит и продлит SSL-сертификат (Let's Encrypt),
+# как только домен будет указывать на IP сервера (A-запись).
+mdsupply.by, www.mdsupply.by {
+	encode zstd gzip
+	reverse_proxy app:3000
+}
+
+# До настройки домена можно временно открыть сайт по IP без HTTPS —
+# закомментируйте блок выше и раскомментируйте этот:
+# :80 {
+# 	encode zstd gzip
+# 	reverse_proxy app:3000
+# }

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { ArrowUp } from "lucide-react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, m } from "framer-motion";
 
 export function BackToTop() {
   const [show, setShow] = useState(false);
@@ -17,7 +17,7 @@ export function BackToTop() {
   return (
     <AnimatePresence>
       {show && (
-        <motion.button
+        <m.button
           type="button"
           aria-label="Наверх"
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
@@ -27,7 +27,7 @@ export function BackToTop() {
           className="fixed bottom-6 right-6 z-40 inline-flex h-12 w-12 items-center justify-center rounded-full bg-ink text-white shadow-card transition-colors hover:bg-red dark:bg-white dark:text-ink dark:hover:bg-red dark:hover:text-white"
         >
           <ArrowUp className="h-5 w-5" />
-        </motion.button>
+        </m.button>
       )}
     </AnimatePresence>
   );

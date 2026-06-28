@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, m } from "framer-motion";
 import { ChevronDown, Phone } from "lucide-react";
 import { Logo } from "@/components/logo";
 import { Container } from "@/components/ui/container";
@@ -117,7 +117,7 @@ function ServicesDropdown({ active }: { active: boolean }) {
       </Link>
       <AnimatePresence>
         {open && (
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}
@@ -136,7 +136,7 @@ function ServicesDropdown({ active }: { active: boolean }) {
                 </Link>
               ))}
             </div>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
     </div>

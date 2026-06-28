@@ -1,6 +1,6 @@
-# Деплой MD Supply (CI/CD)
+# Деплой MD Supply (Docker + CI/CD)
 
-Push в ветку `main` → GitHub Actions собирает приложение и автоматически деплоит его на VPS по SSH. Без даунтайма (pm2 reload).
+Push в ветку `main` → GitHub Actions собирает Docker-образ, привозит его на VPS по SSH и поднимает `docker compose`. На сервере нужен **только Docker** — ни Node, ни pnpm, ни nginx ставить не нужно. SSL выпускает Caddy автоматически.
 
 ## Как это работает
 
@@ -9,81 +9,72 @@ git push main
    │
    ▼
 GitHub Actions (.github/workflows/deploy.yml)
-   ├─ pnpm install --frozen-lockfile
-   ├─ pnpm lint
-   ├─ pnpm build         → .next/standalone (самодостаточный сервер)
-   ├─ собирает release.tgz (standalone + public + static + pm2-конфиг)
-   ├─ scp release.tgz → сервер:/tmp
-   └─ ssh: распаковка в /opt/md-supply/releases/<sha>,
-           переключение симлинка current, pm2 reload
+   ├─ docker build  → образ md-supply:latest (Next.js standalone)
+   ├─ docker save | gzip → image.tgz
+   ├─ scp image.tgz + docker-compose.yml + Caddyfile → сервер:/opt/md-supply
+   └─ ssh: docker load → docker compose up -d
    ▼
-nginx (:80/:443) → reverse proxy → Node (127.0.0.1:3000)
+Caddy (:80/:443, авто-SSL Let's Encrypt) → app (Next.js :3000)
 ```
 
-Структура на сервере:
+Реестр образов не нужен — образ едет тарболом, хватает трёх SSH-секретов.
 
-```
-/opt/md-supply/
-  releases/<git-sha>/   ← релизы (хранятся последние 5)
-  current →  releases/<git-sha>   ← симлинк на активный релиз
-```
+## Секреты репозитория (Settings → Secrets and variables → Actions)
 
-## Секреты репозитория (Settings → Secrets → Actions)
+| Секрет           | Значение                                                          |
+|------------------|-------------------------------------------------------------------|
+| `DEPLOY_HOST`    | IP или домен VPS                                                  |
+| `DEPLOY_USER`    | пользователь деплоя (например `deploy`)                           |
+| `DEPLOY_SSH_KEY` | **приватный** SSH-ключ (публичный — в `authorized_keys` сервера)  |
+| `DEPLOY_PORT`    | *(опционально)* SSH-порт, если не 22                              |
 
-| Секрет           | Значение                                              |
-|------------------|-------------------------------------------------------|
-| `DEPLOY_HOST`    | IP или домен VPS                                      |
-| `DEPLOY_USER`    | пользователь деплоя на сервере (например `deploy`)    |
-| `DEPLOY_SSH_KEY` | **приватный** SSH-ключ (публичный — в `authorized_keys` пользователя) |
-| `DEPLOY_PORT`    | *(опционально)* SSH-порт, если не 22                  |
-
-Эти три секрета (`DEPLOY_HOST`, `DEPLOY_USER`, `DEPLOY_SSH_KEY`) — именно то, что нужно. `DEPLOY_PORT` добавляется только при нестандартном порте.
+Эти три секрета (`DEPLOY_HOST`, `DEPLOY_USER`, `DEPLOY_SSH_KEY`) — именно то, что нужно.
 
 ## Первичная настройка сервера (один раз)
 
-1. Создайте SSH-ключ для деплоя (локально):
+1. Сгенерируйте SSH-ключ для деплоя (локально):
    ```bash
    ssh-keygen -t ed25519 -C "github-deploy" -f md-supply-deploy -N ""
    ```
-   - Приватную часть (`md-supply-deploy`) → секрет `DEPLOY_SSH_KEY`.
-   - Публичную (`md-supply-deploy.pub`) → в `~/.ssh/authorized_keys` пользователя деплоя на сервере.
+   - приватную часть (`md-supply-deploy`) → секрет `DEPLOY_SSH_KEY`;
+   - публичную (`md-supply-deploy.pub`) → в `~/.ssh/authorized_keys` пользователя деплоя на сервере.
 
-2. На сервере (от root) запустите bootstrap — ставит Node 22, pnpm, pm2, nginx, firewall:
+2. На сервере (от root) — bootstrap ставит Docker и firewall:
    ```bash
    scp -r deploy root@<host>:/root/
-   ssh root@<host>
-   sudo bash /root/deploy/bootstrap.sh deploy   # deploy = имя DEPLOY_USER
+   ssh root@<host> 'sudo bash /root/deploy/bootstrap.sh deploy'   # deploy = DEPLOY_USER
    ```
 
-3. Пропишите домен в `/etc/nginx/sites-available/md-supply` (`server_name`) и включите SSL:
-   ```bash
-   sudo apt install -y certbot python3-certbot-nginx
-   sudo certbot --nginx -d mdsupply.by -d www.mdsupply.by
-   ```
+3. Push в `main` (или Actions → Deploy → Run workflow) — сайт поднимется.
 
-4. Сделайте `git push` в `main` (или запустите workflow вручную — Actions → Deploy → Run workflow).
+## Привязка домена (домен уже куплен)
 
-## Откат на предыдущий релиз
+1. В панели регистратора домена создайте **A-запись**: `@` → IP вашего VPS,
+   и `www` → тот же IP (или CNAME `www` → ваш домен).
+2. В `Caddyfile` укажите ваш домен в первой строке (по умолчанию `mdsupply.by, www.mdsupply.by`).
+3. Сделайте push — Caddy сам выпустит и продлит HTTPS-сертификат, как только DNS обновится
+   (обычно от нескольких минут до пары часов). Ничего вручную для SSL делать не нужно.
+
+> Пока DNS не настроен, можно открыть сайт по IP без HTTPS: в `Caddyfile` закомментируйте
+> доменный блок и раскомментируйте `:80 { … }`.
+
+## Откат / диагностика на сервере
 
 ```bash
 ssh deploy@<host>
 cd /opt/md-supply
-ls -1dt releases/*/            # список релизов
-ln -sfn releases/<нужный-sha> current
-pm2 reload current/ecosystem.config.cjs --update-env
+docker compose ps                 # статус контейнеров
+docker compose logs -f app        # логи приложения (заявки [lead])
+docker compose logs -f caddy      # логи прокси/SSL
+docker compose restart app        # перезапуск
+docker compose up -d              # применить изменения compose/Caddyfile
 ```
 
-## Полезные команды на сервере
-
-```bash
-pm2 status              # статус процесса
-pm2 logs md-supply      # логи приложения (в т.ч. заявки [lead])
-pm2 reload md-supply    # перезапуск без даунтайма
-sudo nginx -t && sudo systemctl reload nginx
-```
+Откат на предыдущую версию — повторный запуск workflow на нужном коммите
+(Actions → Deploy → Run workflow → выбрать ветку/SHA) либо `git revert` + push.
 
 ## Приём заявок
 
-Формы отправляют `POST /api/lead`. Сейчас заявки пишутся в логи (`pm2 logs`). Для доставки на e-mail/Telegram
-допишите интеграцию в `src/app/api/lead/route.ts` (SMTP / Telegram Bot API) и при необходимости добавьте
-переменные окружения в `ecosystem.config.cjs` (блок `env`).
+Формы шлют `POST /api/lead`; сейчас заявки попадают в логи (`docker compose logs app`).
+Для доставки на e-mail/Telegram допишите интеграцию в `src/app/api/lead/route.ts` и добавьте
+переменные окружения в сервис `app` в `docker-compose.yml`.
