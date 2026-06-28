@@ -56,6 +56,10 @@ jobs:
             cd ${{ env.APP_DIR }}
             gunzip -c image.tgz | docker load
             rm -f image.tgz
-            docker compose up -d
+            # Останавливаем свой стек и сносим любые застрявшие контейнеры на портах 80/443
+            docker compose down --remove-orphans 2>/dev/null || true
+            docker ps --filter "publish=80" -q | xargs -r docker rm -f
+            docker ps --filter "publish=443" -q | xargs -r docker rm -f
+            docker compose up -d --force-recreate
             docker image prune -f
             echo "Deployed ${{ github.sha }}"
