@@ -1,12 +1,6 @@
-# Сейчас сайт отдаётся по HTTP на порту 80 (доступ по IP, без домена).
-:80 {
+# DNS домена указывает на сервер — Caddy сам выпустит и продлит HTTPS-сертификат (Let's Encrypt)
+# и будет редиректить HTTP → HTTPS.
+mdsupply.by, www.mdsupply.by {
 	encode zstd gzip
 	reverse_proxy app:3000
 }
-
-# Когда домен заработает (A-запись на IP сервера) — закомментируй блок выше
-# и раскомментируй этот: Caddy сам выпустит и продлит HTTPS-сертификат.
-# mdsupply.by, www.mdsupply.by {
-# 	encode zstd gzip
-# 	reverse_proxy app:3000
-# }
