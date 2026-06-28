@@ -51,8 +51,8 @@ export function Header() {
                     key={item.href}
                     href={item.href}
                     className={cn(
-                      "rounded-full px-3.5 py-2 text-[15px] font-medium transition-colors hover:text-red",
-                      pathname === item.href ? "text-red" : "text-fg",
+                      "rounded-full px-3.5 py-2 text-[15px] font-medium transition-colors hover:text-accent",
+                      pathname === item.href ? "text-accent" : "text-fg",
                     )}
                   >
                     {item.title}
@@ -64,9 +64,9 @@ export function Header() {
             <div className="flex items-center gap-2 sm:gap-3">
               <a
                 href={site.phone.href}
-                className="hidden items-center gap-2 text-[15px] font-semibold text-fg transition-colors hover:text-red 2xl:flex"
+                className="hidden items-center gap-2 text-[15px] font-semibold text-fg transition-colors hover:text-accent 2xl:flex"
               >
-                <Phone className="h-4 w-4 text-red" />
+                <Phone className="h-4 w-4 text-accent" />
                 {site.phone.display}
               </a>
               <ThemeToggle className="hidden sm:inline-flex" />
@@ -108,8 +108,8 @@ function ServicesDropdown({ active }: { active: boolean }) {
       <Link
         href="/services"
         className={cn(
-          "inline-flex items-center gap-1 rounded-full px-3.5 py-2 text-[15px] font-medium transition-colors hover:text-red",
-          active ? "text-red" : "text-fg",
+          "inline-flex items-center gap-1 rounded-full px-3.5 py-2 text-[15px] font-medium transition-colors hover:text-accent",
+          active ? "text-accent" : "text-fg",
         )}
       >
         Услуги
@@ -131,7 +131,7 @@ function ServicesDropdown({ active }: { active: boolean }) {
                   href={s.href}
                   className="group rounded-xl p-3 transition-colors hover:bg-bg-soft"
                 >
-                  <span className="block font-semibold text-fg group-hover:text-red">{s.title}</span>
+                  <span className="block font-semibold text-fg group-hover:text-accent">{s.title}</span>
                   <span className="mt-0.5 block text-sm leading-snug text-fg-muted">{s.desc}</span>
                 </Link>
               ))}

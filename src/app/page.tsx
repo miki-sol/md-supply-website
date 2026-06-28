@@ -35,12 +35,12 @@ export default function HomePage() {
                 href={`/services/${s.slug}`}
                 className="group flex h-full flex-col rounded-card border border-border-subtle bg-surface p-7 transition-all duration-300 hover:-translate-y-1 hover:border-red/40 hover:shadow-card"
               >
-                <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-red/10 text-red transition-colors group-hover:bg-red group-hover:text-white">
+                <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-red/10 text-accent transition-colors group-hover:bg-red group-hover:text-white">
                   <s.icon className="h-6 w-6" />
                 </span>
                 <h3 className="mt-5 flex items-center gap-1.5 text-xl font-bold text-fg">
                   {s.title}
-                  <ArrowUpRight className="h-4 w-4 text-ash transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-red" />
+                  <ArrowUpRight className="h-4 w-4 text-fg-muted transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent" />
                 </h3>
                 <p className="mt-2 text-[15px] leading-relaxed text-fg-muted">{s.excerpt}</p>
               </Link>
@@ -63,7 +63,7 @@ export default function HomePage() {
             {advantages.map((a) => (
               <RevealItem key={a.title} className="bg-surface">
                 <div className="flex h-full flex-col p-7">
-                  <a.icon className="h-7 w-7 text-red" />
+                  <a.icon className="h-7 w-7 text-accent" />
                   <h3 className="mt-4 text-lg font-bold text-fg">{a.title}</h3>
                   <p className="mt-2 text-[15px] leading-relaxed text-fg-muted">{a.text}</p>
                 </div>
@@ -85,7 +85,7 @@ export default function HomePage() {
             {brandChannels.map((c) => (
               <RevealItem key={c.channel}>
                 <div className="flex h-full flex-col rounded-card border border-border-subtle bg-surface p-6">
-                  <c.icon className="h-7 w-7 text-red" />
+                  <c.icon className="h-7 w-7 text-accent" />
                   <h3 className="mt-4 font-bold text-fg">{c.channel}</h3>
                   <p className="mt-1.5 text-sm leading-relaxed text-fg-muted">{c.text}</p>
                 </div>

@@ -30,7 +30,7 @@ export function Footer() {
               <ul className="space-y-2.5">
                 {col.links.map((l) => (
                   <li key={l.href}>
-                    <Link href={l.href} className="text-sm text-fg-muted transition-colors hover:text-red">
+                    <Link href={l.href} className="text-sm text-fg-muted transition-colors hover:text-accent">
                       {l.title}
                     </Link>
                   </li>
@@ -41,18 +41,18 @@ export function Footer() {
         </div>
 
         <div className="grid gap-6 border-t border-border-subtle py-8 sm:grid-cols-2 lg:grid-cols-3">
-          <ContactLine icon={<MapPin className="h-5 w-5 text-red" />} title="Адрес">
+          <ContactLine icon={<MapPin className="h-5 w-5 text-accent" />} title="Адрес">
             {site.address}
           </ContactLine>
-          <ContactLine icon={<Phone className="h-5 w-5 text-red" />} title="Телефон">
-            <a href={site.phone.href} className="hover:text-red">{site.phone.display}</a>
+          <ContactLine icon={<Phone className="h-5 w-5 text-accent" />} title="Телефон">
+            <a href={site.phone.href} className="hover:text-accent">{site.phone.display}</a>
           </ContactLine>
-          <ContactLine icon={<Mail className="h-5 w-5 text-red" />} title="Почта">
-            <a href={`mailto:${site.email}`} className="hover:text-red">{site.email}</a>
+          <ContactLine icon={<Mail className="h-5 w-5 text-accent" />} title="Почта">
+            <a href={`mailto:${site.email}`} className="hover:text-accent">{site.email}</a>
           </ContactLine>
         </div>
 
-        <div className="border-t border-border-subtle py-4 text-xs text-ash">
+        <div className="border-t border-border-subtle py-4 text-xs text-fg-muted">
           <p className="mb-1">
             {site.requisites.fullName}. УНП {site.requisites.unp}. {site.requisites.address}.
           </p>
@@ -61,9 +61,9 @@ export function Footer() {
         <div className="flex flex-col items-start justify-between gap-3 border-t border-border-subtle py-5 text-sm text-fg-muted sm:flex-row sm:items-center">
           <p>© {year} {site.legalName}. Все права защищены.</p>
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
-            <Link href="/privacy" className="hover:text-red">Политика конфиденциальности</Link>
-            <Link href="/faq" className="hover:text-red">Вопросы и ответы</Link>
-            <Link href="/careers" className="hover:text-red">Вакансии</Link>
+            <Link href="/privacy" className="hover:text-accent">Политика конфиденциальности</Link>
+            <Link href="/faq" className="hover:text-accent">Вопросы и ответы</Link>
+            <Link href="/careers" className="hover:text-accent">Вакансии</Link>
           </div>
         </div>
       </Container>
@@ -90,7 +90,7 @@ function ContactLine({ icon, title, children }: { icon: React.ReactNode; title: 
     <div className="flex gap-3">
       <span className="mt-0.5 shrink-0">{icon}</span>
       <div>
-        <div className="text-xs font-semibold uppercase tracking-wider text-ash">{title}</div>
+        <div className="text-xs font-semibold uppercase tracking-wider text-fg-muted">{title}</div>
         <div className="mt-1 text-sm leading-relaxed text-fg">{children}</div>
       </div>
     </div>

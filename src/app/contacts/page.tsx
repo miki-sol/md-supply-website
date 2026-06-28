@@ -34,10 +34,10 @@ export default function ContactsPage() {
                 {site.address}
               </ContactItem>
               <ContactItem icon={<Phone className="h-5 w-5" />} title="Телефон">
-                <a href={site.phone.href} className="block hover:text-red">{site.phone.display}</a>
+                <a href={site.phone.href} className="block hover:text-accent">{site.phone.display}</a>
               </ContactItem>
               <ContactItem icon={<Mail className="h-5 w-5" />} title="E-mail">
-                <a href={`mailto:${site.email}`} className="hover:text-red">{site.email}</a>
+                <a href={`mailto:${site.email}`} className="hover:text-accent">{site.email}</a>
               </ContactItem>
             </div>
 
@@ -54,12 +54,12 @@ export default function ContactsPage() {
 
             <div className="mt-8 rounded-card border border-border-subtle bg-bg-soft p-6">
               <h3 className="text-sm font-bold uppercase tracking-wider text-fg">Реквизиты</h3>
-              <dl className="mt-3 space-y-1.5 text-sm text-fg-muted">
-                <div>{site.requisites.fullName}</div>
-                <div>УНП {site.requisites.unp}</div>
-                <div>Р/с {site.requisites.account}</div>
-                <div>{site.requisites.bank}, БИК {site.requisites.bik}</div>
-              </dl>
+              <ul className="mt-3 space-y-1.5 text-sm text-fg-muted">
+                <li>{site.requisites.fullName}</li>
+                <li>УНП {site.requisites.unp}</li>
+                <li>Р/с {site.requisites.account}</li>
+                <li>{site.requisites.bank}, БИК {site.requisites.bik}</li>
+              </ul>
             </div>
           </Reveal>
 
@@ -106,11 +106,11 @@ function ContactItem({
 }) {
   return (
     <div className="flex gap-4">
-      <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-red/10 text-red">
+      <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-red/10 text-accent">
         {icon}
       </span>
       <div>
-        <div className="text-xs font-semibold uppercase tracking-wider text-ash">{title}</div>
+        <div className="text-xs font-semibold uppercase tracking-wider text-fg-muted">{title}</div>
         <div className="mt-1 text-[15px] font-medium leading-relaxed text-fg">{children}</div>
       </div>
     </div>
@@ -123,9 +123,9 @@ function Messenger({ href, label }: { href: string; label: string }) {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="inline-flex items-center gap-2 rounded-full border border-border-subtle bg-surface px-4 py-2 text-sm font-medium text-fg transition-colors hover:border-red hover:text-red"
+      className="inline-flex items-center gap-2 rounded-full border border-border-subtle bg-surface px-4 py-2 text-sm font-medium text-fg transition-colors hover:border-red hover:text-accent"
     >
-      <Send className="h-4 w-4 text-red" /> {label}
+      <Send className="h-4 w-4 text-accent" /> {label}
     </a>
   );
 }

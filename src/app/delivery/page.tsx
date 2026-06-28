@@ -47,7 +47,7 @@ export default function DeliveryPage() {
           {deliveryOptions.map((o) => (
             <RevealItem key={o.title}>
               <div className="flex h-full flex-col rounded-card border border-border-subtle bg-surface p-7">
-                <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-red/10 text-red">
+                <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-red/10 text-accent">
                   <o.icon className="h-6 w-6" />
                 </span>
                 <h3 className="mt-5 text-lg font-bold text-fg">{o.title}</h3>
@@ -76,7 +76,7 @@ export default function DeliveryPage() {
                     key={r}
                     className="inline-flex items-center gap-2 rounded-full border border-border-subtle bg-surface px-4 py-2 text-[15px] font-medium text-fg"
                   >
-                    <MapPin className="h-4 w-4 text-red" /> {r}
+                    <MapPin className="h-4 w-4 text-accent" /> {r}
                   </span>
                 ))}
               </div>
@@ -92,7 +92,7 @@ export default function DeliveryPage() {
           {paymentMethods.map((p) => (
             <RevealItem key={p.title}>
               <div className="flex h-full flex-col rounded-card border border-border-subtle bg-surface p-7">
-                <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-red/10 text-red">
+                <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-red/10 text-accent">
                   <p.icon className="h-6 w-6" />
                 </span>
                 <h3 className="mt-5 text-lg font-bold text-fg">{p.title}</h3>

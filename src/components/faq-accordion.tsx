@@ -23,7 +23,7 @@ export function FaqAccordion({ items }: { items: { q: string; a: string }[] }) {
               <span className="text-[17px] font-semibold text-fg">{item.q}</span>
               <Plus
                 className={cn(
-                  "h-5 w-5 shrink-0 text-red transition-transform duration-300",
+                  "h-5 w-5 shrink-0 text-accent transition-transform duration-300",
                   isOpen && "rotate-45",
                 )}
               />

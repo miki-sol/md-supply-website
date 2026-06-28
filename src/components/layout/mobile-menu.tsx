@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, m } from "framer-motion";
@@ -16,6 +16,17 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
   const pathname = usePathname();
   const [servicesOpen, setServicesOpen] = useState(false);
 
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
+    document.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [open, onClose]);
+
   return (
     <AnimatePresence>
       {open && (
@@ -27,6 +38,9 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
         >
           <div className="absolute inset-0 bg-ink/50 backdrop-blur-sm" onClick={onClose} />
           <m.div
+            role="dialog"
+            aria-modal="true"
+            aria-label="Меню навигации"
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
@@ -68,13 +82,13 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
                               className="overflow-hidden"
                             >
                               <li>
-                                <Link href="/services" onClick={onClose} className="block py-2.5 pl-3 text-[15px] text-fg-muted hover:text-red">
+                                <Link href="/services" onClick={onClose} className="block py-2.5 pl-3 text-[15px] text-fg-muted hover:text-accent">
                                   Все услуги
                                 </Link>
                               </li>
                               {services.map((s) => (
                                 <li key={s.href}>
-                                  <Link href={s.href} onClick={onClose} className="block py-2.5 pl-3 text-[15px] text-fg-muted hover:text-red">
+                                  <Link href={s.href} onClick={onClose} className="block py-2.5 pl-3 text-[15px] text-fg-muted hover:text-accent">
                                     {s.title}
                                   </Link>
                                 </li>
@@ -88,8 +102,8 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
                         href={item.href}
                         onClick={onClose}
                         className={cn(
-                          "block py-3.5 text-base font-medium transition-colors hover:text-red",
-                          pathname === item.href ? "text-red" : "text-fg",
+                          "block py-3.5 text-base font-medium transition-colors hover:text-accent",
+                          pathname === item.href ? "text-accent" : "text-fg",
                         )}
                       >
                         {item.title}
@@ -103,12 +117,12 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
             <div className="space-y-3 border-t border-border-subtle px-5 py-4">
               <div className="flex items-center justify-between">
                 <a href={site.phone.href} className="flex items-center gap-2 font-semibold text-fg">
-                  <Phone className="h-4 w-4 text-red" /> {site.phone.display}
+                  <Phone className="h-4 w-4 text-accent" /> {site.phone.display}
                 </a>
                 <ThemeToggle />
               </div>
               <a href={`mailto:${site.email}`} className="flex items-center gap-2 text-sm text-fg-muted">
-                <Mail className="h-4 w-4 text-red" /> {site.email}
+                <Mail className="h-4 w-4 text-accent" /> {site.email}
               </a>
               <LeadButton kind="callback" size="lg" className="w-full">
                 Заказать звонок

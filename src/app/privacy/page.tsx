@@ -95,8 +95,8 @@ export default function PrivacyPage() {
               вопросам обработки персональных данных обращайтесь:
             </p>
             <ul>
-              <li>E-mail: <a href={`mailto:${site.email}`} className="text-red hover:underline">{site.email}</a></li>
-              <li>Телефон: <a href={site.phone.href} className="text-red hover:underline">{site.phone.display}</a></li>
+              <li>E-mail: <a href={`mailto:${site.email}`} className="text-accent underline underline-offset-2">{site.email}</a></li>
+              <li>Телефон: <a href={site.phone.href} className="text-accent underline underline-offset-2">{site.phone.display}</a></li>
               <li>Адрес: {site.address}</li>
             </ul>
           </Block>
@@ -110,7 +110,7 @@ function Block({ n, title, children }: { n: string; title: string; children: Rea
   return (
     <section>
       <h2 className="mb-3 text-xl font-bold text-fg">
-        <span className="text-red">{n}.</span> {title}
+        <span className="text-accent">{n}.</span> {title}
       </h2>
       <div className="space-y-3 [&_a]:font-medium [&_li]:ml-1 [&_ul]:list-disc [&_ul]:space-y-1.5 [&_ul]:pl-5">
         {children}

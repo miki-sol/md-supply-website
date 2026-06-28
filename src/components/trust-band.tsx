@@ -8,7 +8,7 @@ export function TrustBand() {
         <div className="grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3 lg:grid-cols-5">
           {trustFacts.map((f) => (
             <div key={f.title} className="flex flex-col items-start gap-3">
-              <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-red/10 text-red">
+              <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-red/10 text-accent">
                 <f.icon className="h-5 w-5" />
               </span>
               <div>

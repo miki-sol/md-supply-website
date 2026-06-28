@@ -28,13 +28,13 @@ export function Breadcrumbs({ items }: { items: Crumb[] }) {
             return (
               <span key={i} className="inline-flex items-center gap-1.5">
                 {c.href && !last ? (
-                  <Link href={c.href} className="text-fg-muted transition-colors hover:text-red">
+                  <Link href={c.href} className="text-fg-muted transition-colors hover:text-accent">
                     {c.title}
                   </Link>
                 ) : (
                   <span className="font-medium text-fg">{c.title}</span>
                 )}
-                {!last && <ChevronRight className="h-3.5 w-3.5 text-ash" />}
+                {!last && <ChevronRight className="h-3.5 w-3.5 text-fg-muted" />}
               </span>
             );
           })}

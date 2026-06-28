@@ -57,7 +57,7 @@ export default function AboutPage() {
           <Reveal delay={0.1}>
             <div className="rounded-card border border-border-subtle bg-bg-soft p-8">
               <h3 className="flex items-center gap-2 text-lg font-bold text-fg">
-                <ShieldCheck className="h-5 w-5 text-red" /> Миссия
+                <ShieldCheck className="h-5 w-5 text-accent" /> Миссия
               </h3>
               <p className="mt-3 text-[15px] leading-relaxed text-fg-muted">
                 Делать качественные товары доступными для бизнеса по всей Беларуси — обеспечивая
@@ -91,7 +91,7 @@ export default function AboutPage() {
           {values.map((v) => (
             <RevealItem key={v.title}>
               <div className="flex h-full flex-col rounded-card border border-border-subtle bg-surface p-7">
-                <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-red/10 text-red">
+                <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-red/10 text-accent">
                   <v.icon className="h-6 w-6" />
                 </span>
                 <h3 className="mt-5 text-lg font-bold text-fg">{v.title}</h3>

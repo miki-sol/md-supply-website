@@ -31,15 +31,15 @@ export default function ServicesPage() {
                 href={`/services/${s.slug}`}
                 className="group flex h-full flex-col rounded-card border border-border-subtle bg-surface p-8 transition-all duration-300 hover:-translate-y-1 hover:border-red/40 hover:shadow-card"
               >
-                <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-red/10 text-red transition-colors group-hover:bg-red group-hover:text-white">
+                <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-red/10 text-accent transition-colors group-hover:bg-red group-hover:text-white">
                   <s.icon className="h-6 w-6" />
                 </span>
                 <h2 className="mt-5 flex items-center gap-1.5 text-xl font-bold text-fg">
                   {s.title}
-                  <ArrowUpRight className="h-4 w-4 text-ash transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-red" />
+                  <ArrowUpRight className="h-4 w-4 text-fg-muted transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent" />
                 </h2>
                 <p className="mt-2 text-[15px] leading-relaxed text-fg-muted">{s.excerpt}</p>
-                <span className="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-red">
+                <span className="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-accent">
                   Подробнее
                 </span>
               </Link>

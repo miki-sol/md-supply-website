@@ -55,7 +55,7 @@ export default async function ServiceDetailPage({
       <Section>
         <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
           <Reveal>
-            <span className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-red/10 text-red">
+            <span className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-red/10 text-accent">
               <service.icon className="h-7 w-7" />
             </span>
             <p className="mt-6 text-lg leading-relaxed text-fg-muted">{service.intro}</p>
@@ -64,7 +64,7 @@ export default async function ServiceDetailPage({
             <ul className="mt-6 space-y-3">
               {service.features.map((f) => (
                 <li key={f} className="flex items-start gap-3">
-                  <span className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-red/10 text-red">
+                  <span className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-red/10 text-accent">
                     <Check className="h-4 w-4" />
                   </span>
                   <span className="text-[15px] leading-relaxed text-fg sm:text-base">{f}</span>
@@ -103,8 +103,8 @@ export default async function ServiceDetailPage({
                 href={`/services/${s.slug}`}
                 className="group rounded-card border border-border-subtle bg-surface p-6 transition-all hover:-translate-y-1 hover:border-red/40 hover:shadow-card"
               >
-                <s.icon className="h-6 w-6 text-red" />
-                <h3 className="mt-3 font-bold text-fg group-hover:text-red">{s.title}</h3>
+                <s.icon className="h-6 w-6 text-accent" />
+                <h3 className="mt-3 font-bold text-fg group-hover:text-accent">{s.title}</h3>
               </Link>
             ))}
           </div>

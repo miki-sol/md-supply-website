@@ -40,7 +40,7 @@ export function CookieBanner() {
             <p className="flex-1 text-sm text-fg-muted">
               Мы используем файлы cookie для корректной работы сайта и аналитики. Продолжая
               пользоваться сайтом, вы соглашаетесь с{" "}
-              <Link href="/privacy" className="text-red hover:underline">
+              <Link href="/privacy" className="text-accent underline underline-offset-2">
                 политикой конфиденциальности
               </Link>
               .

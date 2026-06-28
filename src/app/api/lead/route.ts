@@ -8,8 +8,8 @@ const leadSchema = z.object({
   company: z.string().max(120).optional().or(z.literal("")),
   message: z.string().max(2000).optional().or(z.literal("")),
   consent: z.literal(true),
-  // honeypot — должно быть пустым у реального пользователя
-  website: z.string().max(0).optional().or(z.literal("")),
+  // honeypot — у реального пользователя пустое; заполненное значение проверяем в обработчике
+  website: z.string().optional(),
 });
 
 export async function POST(req: Request) {

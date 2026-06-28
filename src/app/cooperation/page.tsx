@@ -74,7 +74,7 @@ export default function CooperationPage() {
             {cooperationSteps.map((step, i) => (
               <Reveal key={step.title} delay={i * 0.06}>
                 <div className="relative h-full rounded-card border border-border-subtle bg-surface p-6">
-                  <span className="font-display text-3xl font-extrabold text-red/30">
+                  <span className="font-display text-3xl font-extrabold text-accent/30">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <h3 className="mt-2 font-bold text-fg">{step.title}</h3>
@@ -102,7 +102,7 @@ export default function CooperationPage() {
                 "Рассчитаем условия отгрузки и доставки",
               ].map((t) => (
                 <li key={t} className="flex items-center gap-3 text-[15px] text-fg">
-                  <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-red/10 text-red">
+                  <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-red/10 text-accent">
                     <Check className="h-4 w-4" />
                   </span>
                   {t}
@@ -110,7 +110,7 @@ export default function CooperationPage() {
               ))}
             </ul>
             <div className="mt-8 flex items-center gap-3 rounded-card border border-border-subtle bg-bg-soft p-5">
-              <Truck className="h-8 w-8 shrink-0 text-red" />
+              <Truck className="h-8 w-8 shrink-0 text-accent" />
               <p className="text-sm text-fg-muted">
                 Поставки по всей Республике Беларусь. Доставка по Минску — на следующий рабочий
                 день.
@@ -146,7 +146,7 @@ function ConditionsCard({
 }) {
   return (
     <div className="flex h-full flex-col rounded-card border border-border-subtle bg-surface p-8">
-      <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-red/10 text-red">
+      <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-red/10 text-accent">
         {icon}
       </span>
       <h2 className="mt-5 text-2xl font-bold text-fg">{title}</h2>
@@ -154,7 +154,7 @@ function ConditionsCard({
       <ul className="mt-6 space-y-3">
         {items.map((item) => (
           <li key={item} className="flex items-start gap-3">
-            <span className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-red/10 text-red">
+            <span className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-red/10 text-accent">
               <Check className="h-4 w-4" />
             </span>
             <span className="text-[15px] leading-relaxed text-fg">{item}</span>

@@ -40,7 +40,7 @@ export default function CatalogPage() {
           {catalogCategories.map((c) => (
             <RevealItem key={c.title}>
               <div className="flex h-full flex-col rounded-card border border-border-subtle bg-surface p-7">
-                <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-red/10 text-red">
+                <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-red/10 text-accent">
                   <c.icon className="h-6 w-6" />
                 </span>
                 <h3 className="mt-5 text-xl font-bold text-fg">{c.title}</h3>
@@ -66,7 +66,7 @@ export default function CatalogPage() {
         <Container>
           <Reveal>
             <DownloadCard
-              icon={<FileSpreadsheet className="h-7 w-7 text-red" />}
+              icon={<FileSpreadsheet className="h-7 w-7 text-accent" />}
               title="Прайс-лист (PDF)"
               text="Актуальные цены и позиции для оптовых клиентов. Обновляется регулярно."
               href="/price-list.pdf"
@@ -113,7 +113,7 @@ function DownloadCard({
         <h3 className="font-bold text-fg">{title}</h3>
         <p className="mt-1 text-sm text-fg-muted">{text}</p>
       </div>
-      <Download className="h-5 w-5 shrink-0 text-ash transition-colors group-hover:text-red" />
+      <Download className="h-5 w-5 shrink-0 text-fg-muted transition-colors group-hover:text-accent" />
     </a>
   );
 }

@@ -57,7 +57,7 @@ const config: Record<
 };
 
 const fieldCls =
-  "w-full rounded-xl border border-border-subtle bg-bg px-4 py-3 text-fg outline-none transition-colors placeholder:text-ash focus:border-red";
+  "w-full rounded-xl border border-border-subtle bg-bg px-4 py-3 text-fg outline-none transition-colors placeholder:text-fg-muted focus:border-red";
 
 export function LeadForm({
   kind,
@@ -97,7 +97,7 @@ export function LeadForm({
   if (done) {
     return (
       <div className={cn("flex flex-col items-center gap-3 py-8 text-center", className)}>
-        <CheckCircle2 className="h-12 w-12 text-red" />
+        <CheckCircle2 className="h-12 w-12 text-accent" />
         <h3 className="text-xl font-bold text-fg">Заявка отправлена</h3>
         <p className="max-w-sm text-fg-muted">
           Спасибо! Менеджер MD Supply свяжется с вами в ближайшее рабочее время.
@@ -148,16 +148,16 @@ export function LeadForm({
         />
         <span>
           Я согласен на обработку{" "}
-          <Link href="/privacy" className="text-red underline-offset-2 hover:underline" target="_blank">
+          <Link href="/privacy" className="text-accent underline underline-offset-2" target="_blank">
             персональных данных
           </Link>
           .
         </span>
       </label>
-      {errors.consent && <p className="-mt-2 text-sm text-red">{errors.consent.message}</p>}
+      {errors.consent && <p className="-mt-2 text-sm text-accent">{errors.consent.message}</p>}
 
       {serverError && (
-        <p className="rounded-lg bg-red/10 px-3 py-2 text-sm text-red">{serverError}</p>
+        <p className="rounded-lg bg-red/10 px-3 py-2 text-sm text-accent">{serverError}</p>
       )}
 
       <Button type="submit" size="lg" disabled={isSubmitting} className="mt-1">
@@ -190,10 +190,10 @@ function Field({
     <label className="block">
       <span className="mb-1.5 flex items-center gap-2 text-sm font-medium text-fg">
         {label}
-        {optional && <span className="text-xs font-normal text-ash">необязательно</span>}
+        {optional && <span className="text-xs font-normal text-fg-muted">необязательно</span>}
       </span>
       {children}
-      {error && <span className="mt-1 block text-sm text-red">{error}</span>}
+      {error && <span className="mt-1 block text-sm text-accent">{error}</span>}
     </label>
   );
 }

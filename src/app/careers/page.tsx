@@ -34,7 +34,7 @@ export default function CareersPage() {
           {perks.map((p) => (
             <RevealItem key={p.title}>
               <div className="flex h-full flex-col rounded-card border border-border-subtle bg-surface p-7">
-                <p.icon className="h-7 w-7 text-red" />
+                <p.icon className="h-7 w-7 text-accent" />
                 <h3 className="mt-4 text-lg font-bold text-fg">{p.title}</h3>
                 <p className="mt-2 text-[15px] leading-relaxed text-fg-muted">{p.text}</p>
               </div>
