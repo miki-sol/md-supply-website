@@ -7,7 +7,6 @@ import { Link } from "@/i18n/navigation";
 import { PageHeader } from "@/components/layout/page-header";
 import { Section } from "@/components/ui/section";
 import { Container } from "@/components/ui/container";
-import { ButtonLink } from "@/components/ui/button";
 import { LeadButton } from "@/components/forms/lead-button";
 import { Reveal } from "@/components/ui/reveal";
 import { serviceSlugs, serviceIcons, type ServiceSlug } from "@/lib/content";
@@ -57,7 +56,7 @@ export default async function ServiceDetailPage({
       <PageHeader
         title={ts(`${slug}.title`)}
         description={ts(`${slug}.excerpt`)}
-        crumbs={[{ title: td("crumb"), href: "/services" }, { title: ts(`${slug}.title`) }]}
+        crumbs={[{ title: td("crumb") }, { title: ts(`${slug}.title`) }]}
       >
         <LeadButton kind="quote" size="lg" className="bg-white text-ink hover:bg-white/90">
           {ta("requestQuote")} <ArrowRight className="h-4 w-4" />
@@ -119,11 +118,6 @@ export default async function ServiceDetailPage({
                 </Link>
               );
             })}
-          </div>
-          <div className="mt-8">
-            <ButtonLink href="/services" variant="outline">
-              {ta("allServices")} <ArrowRight className="h-4 w-4" />
-            </ButtonLink>
           </div>
         </Container>
       </section>

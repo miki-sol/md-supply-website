@@ -86,11 +86,6 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
                               exit={{ height: 0, opacity: 0 }}
                               className="overflow-hidden"
                             >
-                              <li>
-                                <Link href="/services" onClick={onClose} className="block py-2.5 pl-3 text-[15px] text-fg-muted hover:text-accent">
-                                  {ta("allServices")}
-                                </Link>
-                              </li>
                               {serviceLinks.map((s) => (
                                 <li key={s.href}>
                                   <Link href={s.href} onClick={onClose} className="block py-2.5 pl-3 text-[15px] text-fg-muted hover:text-accent">

@@ -3,17 +3,15 @@
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { AnimatePresence, m } from "framer-motion";
-import { ChevronDown, Phone } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { Link, usePathname } from "@/i18n/navigation";
 import { Logo } from "@/components/logo";
 import { Container } from "@/components/ui/container";
-import { ButtonLink } from "@/components/ui/button";
 import { ThemeToggle } from "./theme-toggle";
 import { LanguageSwitcher } from "./language-switcher";
 import { MobileMenu } from "./mobile-menu";
 import { LeadButton } from "@/components/forms/lead-button";
 import { mainNav, serviceLinks } from "@/lib/nav";
-import { site } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 export function Header() {
@@ -65,21 +63,11 @@ export function Header() {
             </nav>
 
             <div className="flex items-center gap-2 sm:gap-3">
-              <a
-                href={site.phone.href}
-                className="hidden items-center gap-2 text-[15px] font-semibold text-fg transition-colors hover:text-accent 2xl:flex"
-              >
-                <Phone className="h-4 w-4 text-accent" />
-                {site.phone.display}
-              </a>
               <LanguageSwitcher className="hidden sm:inline-flex" />
               <ThemeToggle className="hidden sm:inline-flex" />
               <LeadButton kind="callback" size="sm" className="hidden md:inline-flex">
-                {ta("callback")}
+                {ta("contact")}
               </LeadButton>
-              <ButtonLink href="/cooperation" size="sm" variant="secondary" className="hidden 2xl:inline-flex">
-                {ta("cooperation")}
-              </ButtonLink>
               <button
                 type="button"
                 aria-label={tc("menu")}
@@ -111,8 +99,10 @@ function ServicesDropdown({ active }: { active: boolean }) {
       onMouseEnter={() => setOpen(true)}
       onMouseLeave={() => setOpen(false)}
     >
-      <Link
-        href="/services"
+      <button
+        type="button"
+        onClick={() => setOpen((v) => !v)}
+        aria-expanded={open}
         className={cn(
           "inline-flex items-center gap-1 rounded-full px-3.5 py-2 text-[15px] font-medium transition-colors hover:text-accent",
           active ? "text-accent" : "text-fg",
@@ -120,7 +110,7 @@ function ServicesDropdown({ active }: { active: boolean }) {
       >
         {tn("services")}
         <ChevronDown className={cn("h-4 w-4 transition-transform", open && "rotate-180")} />
-      </Link>
+      </button>
       <AnimatePresence>
         {open && (
           <m.div

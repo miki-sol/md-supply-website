@@ -30,9 +30,10 @@
       "requestQuote": "Request a quote",
       "callback": "Request a callback",
       "callbackAlt": "Request a callback",
+      "contact": "Get in touch",
       "cooperation": "Partnership",
       "cooperationTerms": "Partnership terms",
-      "allServices": "All services",
+      "allServices": "All solutions",
       "details": "Learn more"
     },
     "cta": {
@@ -47,7 +48,7 @@
         },
         {
           "title": "Every sales channel",
-          "text": "HoReCa and online stores"
+          "text": "Retail / wholesale sellers, HoReCa and online stores"
         },
         {
           "title": "Direct contracts",
@@ -61,15 +62,14 @@
     },
     "notFound": {
       "title": "Page not found",
-      "text": "The page may have been moved or removed. Go back home or head to the catalog.",
-      "home": "Go home",
-      "catalog": "Go to catalog"
+      "text": "The page may have been moved or removed. Go back home.",
+      "home": "Go home"
     }
   },
   "Nav": {
     "main": {
       "about": "About",
-      "services": "Services",
+      "services": "Solutions",
       "cooperation": "Partnership",
       "contacts": "Contacts",
       "catalog": "Catalog / Range",
@@ -81,12 +81,12 @@
     "footer": {
       "companyTitle": "Company",
       "clientsTitle": "For clients",
-      "servicesTitle": "Services",
+      "servicesTitle": "Solutions",
       "intro": "{legalName} — distribution and supply of a broad product range across the CIS. Wholesale, HoReCa and online stores.",
       "addressLabel": "Address",
       "phoneLabel": "Phone",
       "emailLabel": "Email",
-      "legalLine": "{fullName}. Tax ID (UNP) {unp}. {address}.",
+      "legalLine": "{fullName}. Tax ID (UNP) {unp}",
       "rights": "© {year} {legalName}. All rights reserved."
     }
   },
@@ -223,22 +223,30 @@
         {
           "name": "Online stores",
           "text": "Marketplaces and online platforms with delivery across the CIS."
+        },
+        {
+          "name": "Wholesale sellers",
+          "text": "Distributors, dealers and retail chains with regular purchasing."
+        },
+        {
+          "name": "Retail sellers",
+          "text": "Convenience stores, local chains and points of sale."
         }
       ]
     }
   },
   "Services": {
     "page": {
-      "title": "Services",
+      "title": "Solutions",
       "description": "The full product cycle: distribution, product range and logistics — tailored to your sales channel.",
-      "metaDescription": "MD Supply services: distribution, product range planning and logistics for trading companies across the CIS."
+      "metaDescription": "MD Supply solutions: distribution, product range planning and logistics for trading companies across the CIS."
     },
     "detail": {
-      "crumb": "Services",
-      "featuresTitle": "What the service includes",
+      "crumb": "Solutions",
+      "featuresTitle": "What the solution includes",
       "asideTitle": "Let's discuss your task?",
       "asideText": "Tell us about your sales channel and volumes — we'll prepare a personalized offer and calculate the terms.",
-      "others": "Other services"
+      "others": "Other solutions"
     },
     "items": {
       "distribution": {
@@ -650,7 +658,7 @@
       },
       {
         "q": "How do I get a price list and a commercial offer?",
-        "a": "Submit a request via the 'Request a Quote' form or download the current price list in the Catalog section. A manager will send you a personalised offer tailored to your sales channel."
+        "a": "Submit a request via the 'Request a Quote' form — a manager will send you the current price list and a personalised offer tailored to your sales channel."
       },
       {
         "q": "Which regions do you deliver to?",

@@ -7,7 +7,6 @@ import { footerColumns, serviceLinks } from "@/lib/nav";
 import { site } from "@/lib/site";
 
 export async function Footer() {
-  const year = 2026;
   const tf = await getTranslations("Nav.footer");
   const tm = await getTranslations("Nav.main");
   const ts = await getTranslations("Services.items");
@@ -74,18 +73,8 @@ export async function Footer() {
             {tf("legalLine", {
               fullName: site.requisites.fullName,
               unp: site.requisites.unp,
-              address: site.requisites.address,
             })}
           </p>
-        </div>
-
-        <div className="flex flex-col items-start justify-between gap-3 border-t border-border-subtle py-5 text-sm text-fg-muted sm:flex-row sm:items-center">
-          <p>{tf("rights", { year, legalName: site.legalName })}</p>
-          <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
-            <Link href="/privacy" className="hover:text-accent">{tm("privacy")}</Link>
-            <Link href="/faq" className="hover:text-accent">{tm("faq")}</Link>
-            <Link href="/careers" className="hover:text-accent">{tm("careers")}</Link>
-          </div>
         </div>
       </Container>
     </footer>

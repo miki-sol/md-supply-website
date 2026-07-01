@@ -1,4 +1,4 @@
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { Hero } from "@/components/home/hero";
@@ -6,7 +6,6 @@ import { TrustBand } from "@/components/trust-band";
 import { CTASection } from "@/components/cta-section";
 import { Section, SectionHeader } from "@/components/ui/section";
 import { Container } from "@/components/ui/container";
-import { ButtonLink } from "@/components/ui/button";
 import { RevealGroup, RevealItem } from "@/components/ui/reveal";
 import { serviceSlugs, serviceIcons, advantageIcons, brandChannelIcons } from "@/lib/content";
 
@@ -15,7 +14,6 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   setRequestLocale(locale);
   const t = await getTranslations("Home");
   const ts = await getTranslations("Services.items");
-  const ta = await getTranslations("Common.actions");
 
   const advantages = t.raw("advantages.items") as { title: string; text: string }[];
   const channels = t.raw("channels.items") as { name: string; text: string }[];
@@ -26,18 +24,13 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       <TrustBand />
 
       <Section>
-        <div className="flex flex-wrap items-end justify-between gap-6">
-          <SectionHeader
-            eyebrow={t("services.eyebrow")}
-            title={t("services.title")}
-            description={t("services.description")}
-          />
-          <ButtonLink href="/services" variant="outline" className="shrink-0">
-            {ta("allServices")} <ArrowRight className="h-4 w-4" />
-          </ButtonLink>
-        </div>
+        <SectionHeader
+          eyebrow={t("services.eyebrow")}
+          title={t("services.title")}
+          description={t("services.description")}
+        />
 
-        <RevealGroup className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <RevealGroup className="mt-12 grid gap-5 sm:grid-cols-2">
           {serviceSlugs.map((slug) => {
             const Icon = serviceIcons[slug];
             return (
@@ -94,7 +87,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
             title={t("channels.title")}
             description={t("channels.description")}
           />
-          <RevealGroup className="grid gap-4 sm:grid-cols-3">
+          <RevealGroup className="grid gap-4 sm:grid-cols-2">
             {channels.map((c, i) => {
               const Icon = brandChannelIcons[i];
               return (

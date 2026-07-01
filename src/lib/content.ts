@@ -11,6 +11,7 @@ import {
   MapPin,
   Building2,
   Users,
+  Warehouse,
 } from "lucide-react";
 
 export const serviceSlugs = ["distribution", "assortment"] as const;
@@ -24,4 +25,4 @@ export const serviceIcons: Record<ServiceSlug, LucideIcon> = {
 // Порядок иконок соответствует порядку элементов в messages (Home.*.items / Common.trustBand.items).
 export const advantageIcons: LucideIcon[] = [ShieldCheck, MapPin, Boxes, Clock, LineChart, Award];
 export const trustFactIcons: LucideIcon[] = [MapPin, Store, Handshake, ShieldCheck];
-export const brandChannelIcons: LucideIcon[] = [Building2, Users];
+export const brandChannelIcons: LucideIcon[] = [Building2, Users, Warehouse, Store];

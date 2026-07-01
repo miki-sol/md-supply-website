@@ -6,8 +6,6 @@ import { routing } from "@/i18n/routing";
 const paths: { path: string; priority: number; freq: MetadataRoute.Sitemap[number]["changeFrequency"] }[] = [
   { path: "", priority: 1, freq: "weekly" },
   { path: "/about", priority: 0.8, freq: "monthly" },
-  { path: "/services", priority: 0.9, freq: "monthly" },
-  { path: "/catalog", priority: 0.9, freq: "weekly" },
   { path: "/cooperation", priority: 0.8, freq: "monthly" },
   { path: "/delivery", priority: 0.6, freq: "monthly" },
   { path: "/faq", priority: 0.5, freq: "monthly" },

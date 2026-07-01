@@ -5,7 +5,6 @@ export type NavKey =
   | "services"
   | "cooperation"
   | "contacts"
-  | "catalog"
   | "careers"
   | "delivery"
   | "faq"
@@ -40,7 +39,6 @@ export const footerColumns: FooterColumn[] = [
   {
     titleKey: "clientsTitle",
     links: [
-      { key: "catalog", href: "/catalog" },
       { key: "cooperation", href: "/cooperation" },
       { key: "delivery", href: "/delivery" },
       { key: "faq", href: "/faq" },

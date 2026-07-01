@@ -1,4 +1,4 @@
-import { Home, Search } from "lucide-react";
+import { Home } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import { Container } from "@/components/ui/container";
 import { ButtonLink } from "@/components/ui/button";
@@ -23,9 +23,6 @@ export default async function NotFound() {
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <ButtonLink href="/" size="lg" className="bg-white text-ink hover:bg-white/90">
               <Home className="h-4 w-4" /> {t("home")}
-            </ButtonLink>
-            <ButtonLink href="/catalog" size="lg" variant="outline" className="border-white/30 text-white hover:border-white">
-              <Search className="h-4 w-4" /> {t("catalog")}
             </ButtonLink>
           </div>
         </div>
