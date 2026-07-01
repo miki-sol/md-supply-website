@@ -40,7 +40,7 @@ export function Hero() {
             >
               {t.rich("title", {
                 hl: (chunks) => (
-                  <span className="relative whitespace-nowrap">
+                  <span className="relative sm:whitespace-nowrap">
                     <span className="relative z-10">{chunks}</span>
                   </span>
                 ),

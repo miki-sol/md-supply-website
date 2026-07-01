@@ -67,6 +67,7 @@
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+    overflow-x: clip;
   }
   ::selection {
     background-color: var(--color-red);
