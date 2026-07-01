@@ -1,10 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 import { ArrowUp } from "lucide-react";
 import { AnimatePresence, m } from "framer-motion";
 
 export function BackToTop() {
+  const t = useTranslations("Common");
   const [show, setShow] = useState(false);
 
   useEffect(() => {
@@ -19,7 +21,7 @@ export function BackToTop() {
       {show && (
         <m.button
           type="button"
-          aria-label="Наверх"
+          aria-label={t("backToTop")}
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           initial={{ opacity: 0, scale: 0.7 }}
           animate={{ opacity: 1, scale: 1 }}

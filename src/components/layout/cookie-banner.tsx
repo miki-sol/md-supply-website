@@ -1,13 +1,15 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { AnimatePresence, m } from "framer-motion";
+import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui/button";
 
 const KEY = "mdsupply-cookie-consent";
 
 export function CookieBanner() {
+  const t = useTranslations("Common.cookie");
   const [show, setShow] = useState(false);
 
   useEffect(() => {
@@ -38,15 +40,16 @@ export function CookieBanner() {
         >
           <div className="flex flex-col items-start gap-4 rounded-2xl border border-border-subtle bg-surface p-5 shadow-card sm:flex-row sm:items-center">
             <p className="flex-1 text-sm text-fg-muted">
-              Мы используем файлы cookie для корректной работы сайта и аналитики. Продолжая
-              пользоваться сайтом, вы соглашаетесь с{" "}
-              <Link href="/privacy" className="text-accent underline underline-offset-2">
-                политикой конфиденциальности
-              </Link>
-              .
+              {t.rich("text", {
+                link: (chunks) => (
+                  <Link href="/privacy" className="text-accent underline underline-offset-2">
+                    {chunks}
+                  </Link>
+                ),
+              })}
             </p>
             <Button size="sm" onClick={accept} className="shrink-0">
-              Принять
+              {t("accept")}
             </Button>
           </div>
         </m.div>

@@ -2,27 +2,9 @@
 
 import { createContext, useCallback, useContext, useEffect, useState } from "react";
 import { AnimatePresence, m } from "framer-motion";
+import { useTranslations } from "next-intl";
 import { X } from "lucide-react";
 import { LeadForm, type LeadKind } from "./lead-form";
-
-const titles: Record<LeadKind, { title: string; subtitle: string }> = {
-  callback: {
-    title: "Заказать обратный звонок",
-    subtitle: "Оставьте номер — перезвоним в рабочее время и ответим на вопросы.",
-  },
-  quote: {
-    title: "Запросить коммерческое предложение",
-    subtitle: "Подготовим персональное КП с ценами и условиями под ваш канал продаж.",
-  },
-  contact: {
-    title: "Оставить заявку",
-    subtitle: "Напишите нам — менеджер свяжется с вами и поможет с подбором.",
-  },
-  vacancy: {
-    title: "Отклик на вакансию",
-    subtitle: "Расскажите о себе — мы рассмотрим отклик и свяжемся с вами.",
-  },
-};
 
 type Ctx = { open: (kind: LeadKind) => void };
 const LeadContext = createContext<Ctx | null>(null);
@@ -34,6 +16,7 @@ export function useLead() {
 }
 
 export function LeadProvider({ children }: { children: React.ReactNode }) {
+  const t = useTranslations("Forms.modal");
   const [kind, setKind] = useState<LeadKind | null>(null);
 
   const open = useCallback((k: LeadKind) => setKind(k), []);
@@ -66,7 +49,7 @@ export function LeadProvider({ children }: { children: React.ReactNode }) {
             <m.div
               role="dialog"
               aria-modal="true"
-              aria-label={titles[kind].title}
+              aria-label={t(`${kind}.title`)}
               initial={{ y: 40, opacity: 0, scale: 0.98 }}
               animate={{ y: 0, opacity: 1, scale: 1 }}
               exit={{ y: 20, opacity: 0, scale: 0.98 }}
@@ -75,15 +58,15 @@ export function LeadProvider({ children }: { children: React.ReactNode }) {
             >
               <button
                 type="button"
-                aria-label="Закрыть"
+                aria-label={t("close")}
                 onClick={close}
                 className="absolute right-4 top-4 inline-flex h-9 w-9 items-center justify-center rounded-full text-fg-muted transition-colors hover:bg-bg-soft hover:text-fg"
               >
                 <X className="h-5 w-5" />
               </button>
               <div className="mb-5 pr-8">
-                <h2 className="text-xl font-bold text-fg">{titles[kind].title}</h2>
-                <p className="mt-1.5 text-sm text-fg-muted">{titles[kind].subtitle}</p>
+                <h2 className="text-xl font-bold text-fg">{t(`${kind}.title`)}</h2>
+                <p className="mt-1.5 text-sm text-fg-muted">{t(`${kind}.subtitle`)}</p>
               </div>
               <LeadForm kind={kind} />
             </m.div>

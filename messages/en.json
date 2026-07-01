@@ -1,0 +1,727 @@
+{
+  "Meta": {
+    "tagline": "Distribution and supply of a broad product range",
+    "description": "MD Supply (MD Supply LLC) is a Minsk-based trading company: wholesale supply, distribution and logistics across the CIS.",
+    "keywords": "MD Supply|wholesale supplier|CIS distribution|wholesale Minsk|trading company|distributor|goods supplier|logistics"
+  },
+  "Common": {
+    "skipToContent": "Skip to content",
+    "breadcrumbHome": "Home",
+    "breadcrumbAria": "Breadcrumbs",
+    "logoHome": "MD Supply — home",
+    "menu": "Menu",
+    "closeMenu": "Close menu",
+    "navMenuAria": "Navigation menu",
+    "backToTop": "Back to top",
+    "theme": {
+      "light": "Light theme",
+      "dark": "Dark theme"
+    },
+    "lang": {
+      "label": "Language",
+      "ru": "RU",
+      "en": "EN"
+    },
+    "cookie": {
+      "text": "We use cookies to make the site work properly and for analytics. By continuing to use the site, you agree to our <link>privacy policy</link>.",
+      "accept": "Accept"
+    },
+    "actions": {
+      "requestQuote": "Request a quote",
+      "callback": "Request a callback",
+      "callbackAlt": "Request a callback",
+      "cooperation": "Partnership",
+      "cooperationTerms": "Partnership terms",
+      "allServices": "All services",
+      "details": "Learn more"
+    },
+    "cta": {
+      "title": "Ready to discuss supply?",
+      "text": "Leave a request — an MD Supply manager will prepare a commercial offer tailored to your sales channel and answer all your questions."
+    },
+    "trustBand": {
+      "items": [
+        {
+          "title": "All of the CIS",
+          "text": "Deliveries across every CIS country"
+        },
+        {
+          "title": "Every sales channel",
+          "text": "HoReCa and online stores"
+        },
+        {
+          "title": "Direct contracts",
+          "text": "We work directly with manufacturers"
+        },
+        {
+          "title": "Transparent",
+          "text": "Full set of accompanying documents"
+        }
+      ]
+    },
+    "notFound": {
+      "title": "Page not found",
+      "text": "The page may have been moved or removed. Go back home or head to the catalog.",
+      "home": "Go home",
+      "catalog": "Go to catalog"
+    }
+  },
+  "Nav": {
+    "main": {
+      "about": "About",
+      "services": "Services",
+      "cooperation": "Partnership",
+      "contacts": "Contacts",
+      "catalog": "Catalog / Range",
+      "careers": "Careers",
+      "delivery": "Delivery & Payment",
+      "faq": "FAQ",
+      "privacy": "Privacy Policy"
+    },
+    "footer": {
+      "companyTitle": "Company",
+      "clientsTitle": "For clients",
+      "servicesTitle": "Services",
+      "intro": "{legalName} — distribution and supply of a broad product range across the CIS. Wholesale, HoReCa and online stores.",
+      "addressLabel": "Address",
+      "phoneLabel": "Phone",
+      "emailLabel": "Email",
+      "legalLine": "{fullName}. Tax ID (UNP) {unp}. {address}.",
+      "rights": "© {year} {legalName}. All rights reserved."
+    }
+  },
+  "Forms": {
+    "labels": {
+      "name": "Your name",
+      "namePlaceholder": "John Smith",
+      "contactHeading": "How should we reach you",
+      "company": "Company",
+      "companyPlaceholder": "Company name",
+      "optional": "optional",
+      "messagePlaceholder": "Briefly describe your request",
+      "consent": "I agree to the processing of my <link>personal data</link>."
+    },
+    "contactTypes": {
+      "phone": "Phone",
+      "email": "Email",
+      "telegram": "Telegram"
+    },
+    "placeholders": {
+      "phone": "+375 (29) 000-00-00",
+      "email": "you@example.com",
+      "telegram": "@username"
+    },
+    "validation": {
+      "name": "Enter your name",
+      "contactRequired": "Enter a contact",
+      "phone": "Enter a valid phone number",
+      "email": "Enter a valid email",
+      "telegram": "Enter a Telegram username: 5–32 characters (letters, digits, _)",
+      "consent": "Consent is required"
+    },
+    "serverFail": "Could not send the request. Please try calling us.",
+    "sending": "Sending…",
+    "success": {
+      "title": "Request sent",
+      "text": "Thank you! An MD Supply manager will contact you during the next business hours."
+    },
+    "kinds": {
+      "callback": {
+        "submit": "Call me back",
+        "messageLabel": ""
+      },
+      "quote": {
+        "submit": "Request a quote",
+        "messageLabel": "What are you interested in"
+      },
+      "contact": {
+        "submit": "Send request",
+        "messageLabel": "Message"
+      },
+      "vacancy": {
+        "submit": "Apply",
+        "messageLabel": "Cover message / link to your CV"
+      }
+    },
+    "modal": {
+      "close": "Close",
+      "callback": {
+        "title": "Request a callback",
+        "subtitle": "Leave your number — we'll call back during business hours and answer your questions."
+      },
+      "quote": {
+        "title": "Request a commercial offer",
+        "subtitle": "We'll prepare a personalized offer with prices and terms for your sales channel."
+      },
+      "contact": {
+        "title": "Leave a request",
+        "subtitle": "Write to us — a manager will get in touch and help with your selection."
+      },
+      "vacancy": {
+        "title": "Job application",
+        "subtitle": "Tell us about yourself — we'll review your application and get back to you."
+      }
+    }
+  },
+  "Home": {
+    "hero": {
+      "title": "Distribution and supply of a <hl>broad product range</hl>",
+      "subtitle": "MD Supply supplies goods to wholesalers, HoReCa and online stores across the CIS — with reliable logistics, transparent terms and a full set of documents.",
+      "badge": "Why MD Supply",
+      "points": [
+        "Wholesale, HoReCa and online stores",
+        "Deliveries across the CIS",
+        "Direct contracts with manufacturers",
+        "Full set of accompanying documents"
+      ]
+    },
+    "services": {
+      "eyebrow": "What we do",
+      "title": "What we offer",
+      "description": "The full product cycle — from purchasing and storage to shelf presence and sales growth."
+    },
+    "advantages": {
+      "eyebrow": "Why MD Supply",
+      "title": "Partners need a reliable supplier",
+      "description": "We're accountable not only for shipping, but for results: presence, turnover and sales.",
+      "items": [
+        {
+          "title": "Reliable supply",
+          "text": "Direct contracts and stock reserves — goods are always available and arrive on time."
+        },
+        {
+          "title": "CIS-wide coverage",
+          "text": "Our logistics and sales team operate across every CIS country."
+        },
+        {
+          "title": "Broad product range",
+          "text": "Several product categories in a single portfolio — convenient to cover your needs with one supplier."
+        },
+        {
+          "title": "Fast processing",
+          "text": "We handle requests within the business day and ship without delays."
+        },
+        {
+          "title": "Transparent terms",
+          "text": "Clear channel-based pricing and regular reporting for partners."
+        },
+        {
+          "title": "Quality and guarantees",
+          "text": "Quality control at every stage and a full set of accompanying documents."
+        }
+      ]
+    },
+    "channels": {
+      "eyebrow": "Sales channels",
+      "title": "We run a dedicated model for each channel",
+      "description": "Each channel gets its own product matrix, pricing and presence standards.",
+      "items": [
+        {
+          "name": "HoReCa",
+          "text": "Restaurants, cafés, hotels, catering and service companies."
+        },
+        {
+          "name": "Online stores",
+          "text": "Marketplaces and online platforms with delivery across the CIS."
+        }
+      ]
+    }
+  },
+  "Services": {
+    "page": {
+      "title": "Services",
+      "description": "The full product cycle: distribution, product range and logistics — tailored to your sales channel.",
+      "metaDescription": "MD Supply services: distribution, product range planning and logistics for trading companies across the CIS."
+    },
+    "detail": {
+      "crumb": "Services",
+      "featuresTitle": "What the service includes",
+      "asideTitle": "Let's discuss your task?",
+      "asideText": "Tell us about your sales channel and volumes — we'll prepare a personalized offer and calculate the terms.",
+      "others": "Other services"
+    },
+    "items": {
+      "distribution": {
+        "title": "Distribution",
+        "navDesc": "Exclusive and official brand distribution across the CIS",
+        "excerpt": "Official and exclusive brand distribution across CIS countries.",
+        "intro": "We provide the full cycle of bringing products to the CIS market — from registration and certification to presence in HoReCa and e-commerce. We act as an official distributor and take responsibility for volumes, distribution and sales.",
+        "features": [
+          "Exclusive and official distribution contracts",
+          "Coverage of HoReCa and online stores",
+          "Stock management and rotation",
+          "Control of pricing and channel terms",
+          "Regular sell-in / sell-out reporting"
+        ]
+      },
+      "assortment": {
+        "title": "Product range & purchasing",
+        "navDesc": "Building a product matrix for your sales channel",
+        "excerpt": "Building a balanced product matrix for a specific sales channel.",
+        "intro": "We select a range that sells: we analyze demand, turnover and margins. We manage purchasing so goods are always in stock while the warehouse doesn't tie up working capital.",
+        "features": [
+          "Demand analytics and category management",
+          "Product matrix optimization by channel",
+          "Direct contracts with manufacturers",
+          "Quality and shelf-life control",
+          "Managing slow-movers and promo stock"
+        ]
+      }
+    }
+  },
+  "About": {
+    "meta": {
+      "title": "About Us | MD Supply",
+      "description": "MD Supply (MD Supply LLC) is a trading company based in Minsk. Our mission, values, work approach, and wholesale distribution across the CIS."
+    },
+    "crumb": "About",
+    "header": {
+      "title": "About MD Supply",
+      "description": "We are a Minsk-based trading company delivering wholesale supply and distribution of a wide product range across the CIS."
+    },
+    "whoWeAre": {
+      "eyebrow": "Who We Are",
+      "title": "The reliable link between manufacturer and point of sale",
+      "p1": "{legalName} is a trading company based in Minsk. We build a distribution model that covers the full journey of a product — from procurement at the manufacturer to shelf presence and sales growth for our partners.",
+      "p2": "We supply goods to retail chains, neighborhood stores, HoReCa venues, and online stores across the CIS. The team behind the company brings hands-on experience in procurement, sales, and logistics.",
+      "p3": "Our core value is partner relationships built on accountability, transparent terms, and reliable deliveries."
+    },
+    "mission": {
+      "heading": "Mission",
+      "text": "Make quality goods accessible to businesses across the CIS — through uninterrupted supply, fair terms, and service you can count on."
+    },
+    "values": {
+      "eyebrow": "Our Values",
+      "title": "The principles we work by",
+      "items": [
+        {
+          "title": "Partnership",
+          "text": "We build long-term relationships where both sides win."
+        },
+        {
+          "title": "Results",
+          "text": "We own sales volumes and shelf presence, not just shipments."
+        },
+        {
+          "title": "Accountability",
+          "text": "We keep our word on timelines, quality, and terms."
+        },
+        {
+          "title": "Growth",
+          "text": "We adopt new tools in distribution, analytics, and logistics."
+        }
+      ]
+    },
+    "approach": {
+      "eyebrow": "Our Approach",
+      "title": "How we deliver results",
+      "description": "We are a young company, but we operate to professional standards — backed by team experience and well-tuned processes.",
+      "items": [
+        {
+          "title": "Experienced team",
+          "text": "The people behind the project have real expertise in distribution, procurement, and logistics."
+        },
+        {
+          "title": "Streamlined processes",
+          "text": "Order intake, fulfillment, and dispatch run as one seamless mechanism."
+        },
+        {
+          "title": "Direct contracts",
+          "text": "We source directly from manufacturers — fair pricing and guaranteed origin."
+        },
+        {
+          "title": "Flexibility for partners",
+          "text": "We adapt the product range and terms to fit your sales channel and business format."
+        }
+      ]
+    }
+  },
+  "Careers": {
+    "meta": {
+      "title": "Careers",
+      "description": "Open positions at MD Supply (MD Supply LLC), Minsk: sales representatives, purchasing, warehouse, and logistics. Join the team."
+    },
+    "crumb": "Careers",
+    "header": {
+      "title": "Careers",
+      "description": "MD Supply is growing — and we're looking for people who want to grow with us. Browse our open positions."
+    },
+    "perks": [
+      {
+        "title": "Growth & Development",
+        "text": "Training, mentorship, and clear career paths within the company."
+      },
+      {
+        "title": "Stability",
+        "text": "Official employment contract and on-time salary payments."
+      },
+      {
+        "title": "Strong Team",
+        "text": "Experienced colleagues and well-established working processes."
+      }
+    ],
+    "openPositions": {
+      "eyebrow": "Open Positions",
+      "title": "Current Vacancies"
+    },
+    "apply": "Apply",
+    "noMatch": {
+      "heading": "Didn't find a suitable vacancy?",
+      "text": "Send us your CV — we'll get in touch when a matching position opens up.",
+      "cta": "Send CV"
+    },
+    "jobs": [
+      {
+        "title": "Sales Representative",
+        "type": "Full-time",
+        "city": "Minsk",
+        "desc": "Managing existing client accounts (HoReCa, retail chains), growing sales volume, and maintaining product display standards."
+      },
+      {
+        "title": "Purchasing Manager",
+        "type": "Full-time",
+        "city": "Minsk",
+        "desc": "Working with suppliers, managing inventory levels, planning orders, and maintaining procurement documentation."
+      },
+      {
+        "title": "Warehouse Picker",
+        "type": "Full-time",
+        "city": "Minsk",
+        "desc": "Receiving, storing, and picking orders in the warehouse; working with barcode scanners."
+      },
+      {
+        "title": "Driver-Forwarder",
+        "type": "Full-time",
+        "city": "Minsk",
+        "desc": "Delivering goods to clients across Minsk and suburbs, handling accompanying shipping documentation."
+      }
+    ]
+  },
+  "Catalog": {
+    "meta": {
+      "title": "Product Catalog & Range",
+      "description": "MD Supply product catalog: groceries, household chemicals, home goods, HoReCa, and private label. Download the price list and catalog."
+    },
+    "crumb": "Catalog",
+    "header": {
+      "title": "Product Catalog & Range",
+      "description": "A broad product range across six categories. Current price list and catalog available for download."
+    },
+    "downloadPrice": "Download Price List",
+    "range": {
+      "eyebrow": "Product Range",
+      "title": "Product Categories",
+      "description": "This site is for information purposes only — contact your manager or refer to the price list for orders and pricing."
+    },
+    "categories": [
+      {
+        "title": "Food & Groceries",
+        "desc": "Groceries, snacks, confectionery, and beverages from trusted manufacturers.",
+        "items": [
+          "Groceries",
+          "Snacks & Crisps",
+          "Confectionery",
+          "Beverages",
+          "Tea & Coffee"
+        ]
+      },
+      {
+        "title": "Household Chemicals & Hygiene",
+        "desc": "Home care, personal hygiene, and professional cleaning products.",
+        "items": [
+          "Cleaning Products",
+          "Personal Hygiene",
+          "Paper Products",
+          "Professional Chemicals"
+        ]
+      },
+      {
+        "title": "Home Goods",
+        "desc": "Household goods, tableware, and everyday accessories.",
+        "items": [
+          "Tableware",
+          "Household Goods",
+          "Textiles",
+          "Disposable Tableware"
+        ]
+      },
+      {
+        "title": "HoReCa",
+        "desc": "Range for cafés, restaurants, and hotels: packaging, consumables, ingredients.",
+        "items": [
+          "Packaging",
+          "Consumables",
+          "Ingredients",
+          "Bar Supplies"
+        ]
+      },
+      {
+        "title": "Non-Food Products",
+        "desc": "Stationery, seasonal, and everyday non-food items.",
+        "items": [
+          "Stationery",
+          "Seasonal Goods",
+          "Batteries & Bulbs",
+          "Small Electronics"
+        ]
+      },
+      {
+        "title": "Private Label",
+        "desc": "Private label products with quality guarantees and attractive margins for partners.",
+        "items": [
+          "Exclusive Lines",
+          "Flexible Pricing",
+          "Sales Support"
+        ]
+      }
+    ],
+    "priceCard": {
+      "title": "Price List (PDF)",
+      "text": "Current prices and SKUs for wholesale clients. Updated regularly."
+    },
+    "quotePrompt": "Need a price list tailored to your sales channel? Request a personalised quote.",
+    "quoteButton": "Request Price List & Quote"
+  },
+  "Contacts": {
+    "meta": {
+      "title": "Contact Us",
+      "description": "Contact MD Supply: {address}. Phone {phone}, email {email}. Reach us via the contact form."
+    },
+    "crumb": "Contacts",
+    "heading": "Contact Us",
+    "subheading": "Reach us any convenient way — we respond during business hours and will help with product selection and terms.",
+    "address": "Address",
+    "phone": "Phone",
+    "emailLabel": "Email",
+    "messengers": "Messengers",
+    "form": {
+      "title": "Contact Form",
+      "intro": "Send us a message — a manager will get back to you within business hours."
+    }
+  },
+  "Cooperation": {
+    "meta": {
+      "title": "Cooperation",
+      "description": "Partnership terms with MD Supply for wholesale buyers and brands: how we work, request a quote, company overview."
+    },
+    "crumb": "Cooperation",
+    "header": {
+      "title": "Cooperation",
+      "description": "We work with wholesale buyers and manufacturers. Transparent terms, reliable supply, and support at every stage."
+    },
+    "wholesale": {
+      "title": "Wholesale buyers",
+      "text": "For stores, chains, HoReCa venues, and online shops.",
+      "items": [
+        "Flexible pricing based on purchase volume",
+        "Deferred payment for regular partners",
+        "Dedicated manager and fast order processing",
+        "Full set of accompanying documents",
+        "Delivery across Minsk and regions, or warehouse pickup"
+      ]
+    },
+    "partners": {
+      "title": "Partners and suppliers",
+      "text": "For manufacturers and brands that need distribution across the CIS.",
+      "items": [
+        "Distribution of your brand across the CIS",
+        "Coverage of HoReCa and online stores",
+        "Transparent sales and stock reporting",
+        "Joint planning for new product launches"
+      ]
+    },
+    "howWeWork": {
+      "eyebrow": "How we work",
+      "title": "Cooperation workflow"
+    },
+    "steps": [
+      {
+        "title": "Request",
+        "text": "Submit a request on our website or contact a manager directly."
+      },
+      {
+        "title": "Consultation",
+        "text": "We discuss your needs, sales channel, and order volumes."
+      },
+      {
+        "title": "Commercial offer",
+        "text": "We prepare a personalised quote with pricing and terms."
+      },
+      {
+        "title": "Contract",
+        "text": "We agree on and sign a supply agreement."
+      },
+      {
+        "title": "Deliveries",
+        "text": "We start shipments and support the partnership ongoing."
+      }
+    ],
+    "quote": {
+      "eyebrow": "Request a quote",
+      "title": "Request a commercial offer",
+      "description": "Fill in the form — a manager will prepare a personalised quote with pricing and terms for your sales channel.",
+      "items": [
+        "We respond within one business day",
+        "We match the assortment to your format",
+        "We calculate shipping and delivery terms"
+      ],
+      "deliveryNote": "Shipments across the CIS. Delivery within Minsk — next business day.",
+      "formTitle": "Quote request form",
+      "formSubtitle": "All fields except those marked are required."
+    }
+  },
+  "Delivery": {
+    "meta": {
+      "title": "Delivery & Payment",
+      "description": "MD Supply delivery and payment: CIS-wide logistics, shipping options, and bank transfer for legal entities and sole proprietors."
+    },
+    "crumb": "Delivery & Payment",
+    "header": {
+      "title": "Delivery & Payment",
+      "description": "Coverage, shipping methods, and payment options. Exact terms are set out in the supply contract."
+    },
+    "delivery": {
+      "eyebrow": "Delivery",
+      "title": "Shipping Methods"
+    },
+    "options": [
+      {
+        "title": "Delivery in Minsk",
+        "text": "By our own fleet on the next business day after order confirmation."
+      },
+      {
+        "title": "Regional Delivery",
+        "text": "Shipments across CIS countries on an agreed schedule."
+      },
+      {
+        "title": "Warehouse Pickup",
+        "text": "Completed orders can be collected from our Minsk warehouse at a convenient time."
+      }
+    ],
+    "geography": {
+      "eyebrow": "Coverage",
+      "title": "We Ship Across the CIS",
+      "description": "MD Supply's logistics network covers Minsk and all CIS countries."
+    },
+    "regions": [
+      "Belarus",
+      "Russia",
+      "Kazakhstan",
+      "Armenia",
+      "Kyrgyzstan",
+      "Uzbekistan",
+      "Azerbaijan",
+      "Moldova"
+    ],
+    "payment": {
+      "eyebrow": "Payment",
+      "title": "Payment Methods"
+    },
+    "payments": [
+      {
+        "title": "Bank Transfer",
+        "text": "For legal entities and sole proprietors. Payment by invoice under the supply contract."
+      },
+      {
+        "title": "Deferred Payment",
+        "text": "Available to regular partners. Terms are agreed individually and fixed in the contract."
+      },
+      {
+        "title": "Payment on Receipt",
+        "text": "Available for warehouse pickup in Minsk or on delivery within the city."
+      }
+    ],
+    "disclaimer": "This section is for informational purposes only. Exact delivery and payment terms — minimum order amount, lead times, and rates — are agreed individually and set out in the supply contract."
+  },
+  "Faq": {
+    "meta": {
+      "title": "FAQ",
+      "description": "Answers to common questions from MD Supply clients and partners: terms of cooperation, price list, delivery regions, payment, and partnerships."
+    },
+    "crumb": "FAQ",
+    "header": {
+      "title": "Frequently Asked Questions",
+      "description": "We've compiled answers to the most common questions from clients and partners. Didn't find what you need? Contact us."
+    },
+    "items": [
+      {
+        "q": "Do you work only with wholesale clients?",
+        "a": "We operate wholesale only — supplying goods to retail chains, stores, HoReCa venues, and online stores. We do not engage in retail sales."
+      },
+      {
+        "q": "How do I get a price list and a commercial offer?",
+        "a": "Submit a request via the 'Request a Quote' form or download the current price list in the Catalog section. A manager will send you a personalised offer tailored to your sales channel."
+      },
+      {
+        "q": "Which regions do you deliver to?",
+        "a": "We supply goods across all CIS countries. Delivery within Minsk is available on the next business day."
+      },
+      {
+        "q": "What payment methods do you accept?",
+        "a": "For legal entities and sole traders — bank transfer under contract, with deferred payment available by arrangement. We provide a full set of accompanying documents."
+      },
+      {
+        "q": "Can I become a supplier or introduce my brand?",
+        "a": "Yes. We are open to new brands and manufacturers. Reach out via the Cooperation section — we will review the distribution terms for your products."
+      },
+      {
+        "q": "Is there a minimum order value?",
+        "a": "The minimum order value and dispatch terms depend on the sales channel and region. Your manager will agree on the exact parameters individually when signing the contract."
+      }
+    ]
+  },
+  "Privacy": {
+    "meta": {
+      "title": "Privacy Policy",
+      "description": "MD Supply personal data processing policy in accordance with the Republic of Belarus Personal Data Protection Law No. 99-Z of 7 May 2021."
+    },
+    "crumb": "Privacy Policy",
+    "header": {
+      "title": "Privacy Policy",
+      "description": "How we process and protect the personal data of website visitors in accordance with the legislation of the Republic of Belarus."
+    },
+    "s1": {
+      "title": "General Provisions",
+      "p1": "This Privacy Policy sets out the procedure for processing and protecting the personal data of users of the website {url} (hereinafter — the Website), the operator of which is {operator}, Tax ID (UNP) {unp} (hereinafter — the Operator).",
+      "p2": "The Policy has been developed in accordance with the Republic of Belarus Personal Data Protection Law No. 99-Z of 7 May 2021 'On Personal Data Protection' and other regulatory legal acts of the Republic of Belarus."
+    },
+    "s2": {
+      "title": "Categories of Data Processed",
+      "intro": "The Operator processes personal data that the user voluntarily provides when completing forms on the Website:",
+      "i1": "name (and, where applicable, the name of the organisation);",
+      "i2": "contact details: telephone number and/or e-mail address;",
+      "i3": "the text of the enquiry and any other information provided by the user;",
+      "i4": "technical cookie and web-analytics data (anonymised)."
+    },
+    "s3": {
+      "title": "Purposes of Processing",
+      "i1": "handling enquiries, applications and requests for commercial proposals;",
+      "i2": "communicating with the user, including call-back requests;",
+      "i3": "providing information about products, services and terms of cooperation;",
+      "i4": "improving the Website and analysing visitor statistics."
+    },
+    "s4": {
+      "title": "Legal Grounds and Consent",
+      "p1": "Personal data are processed on the basis of the data subject's consent, which is given when the user submits a form on the Website by ticking the relevant checkbox. Consent may be withdrawn at any time by contacting the Operator using the details set out in Section 8."
+    },
+    "s5": {
+      "title": "Retention Period and Conditions",
+      "p1": "Personal data are retained no longer than is required for the purposes of processing, or until consent is withdrawn. Once the purposes of processing have been achieved or consent has been withdrawn, the data shall be deleted or anonymised."
+    },
+    "s6": {
+      "title": "Disclosure to Third Parties",
+      "p1": "The Operator does not disclose personal data to third parties, except as required by the legislation of the Republic of Belarus or with the consent of the data subject. Data may be processed by authorised persons under conditions of confidentiality."
+    },
+    "s7": {
+      "title": "Cookies and Web Analytics",
+      "p1": "The Website uses cookies to ensure correct operation and to collect anonymised visitor statistics (web-analytics systems). Users may restrict the use of cookies in their browser settings."
+    },
+    "s8": {
+      "title": "Data Subject Rights and Contacts",
+      "p1": "Users have the right to obtain information about the processing of their personal data, to request its rectification, blocking or deletion, and to withdraw consent. For questions regarding personal data processing, please contact us:",
+      "emailLabel": "E-mail:",
+      "phoneLabel": "Phone:",
+      "addressLabel": "Address:"
+    }
+  }
+}

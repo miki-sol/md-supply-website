@@ -1,59 +1,69 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { CheckCircle2, Loader2, Send } from "lucide-react";
+import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 export type LeadKind = "callback" | "quote" | "contact" | "vacancy";
 
-const schema = z.object({
-  name: z.string().min(2, "Укажите имя"),
-  contact: z.string().min(5, "Укажите телефон или e-mail"),
-  company: z.string().optional(),
-  message: z.string().optional(),
-  consent: z.literal(true, { message: "Необходимо согласие" }),
-  website: z.string().max(0).optional(),
-});
+const contactTypes = ["phone", "email", "telegram"] as const;
+type ContactType = (typeof contactTypes)[number];
 
-type FormValues = z.input<typeof schema>;
+const CONTACT_META: {
+  value: ContactType;
+  inputMode: "tel" | "email" | "text";
+  autoComplete: string;
+}[] = [
+  { value: "phone", inputMode: "tel", autoComplete: "tel" },
+  { value: "email", inputMode: "email", autoComplete: "email" },
+  { value: "telegram", inputMode: "text", autoComplete: "off" },
+];
 
-const config: Record<
-  LeadKind,
-  { contactLabel: string; showCompany: boolean; showMessage: boolean; messageLabel: string; submit: string }
-> = {
-  callback: {
-    contactLabel: "Телефон",
-    showCompany: false,
-    showMessage: false,
-    messageLabel: "",
-    submit: "Жду звонка",
-  },
-  quote: {
-    contactLabel: "Телефон или e-mail",
-    showCompany: true,
-    showMessage: true,
-    messageLabel: "Что вас интересует",
-    submit: "Запросить КП",
-  },
-  contact: {
-    contactLabel: "Телефон или e-mail",
-    showCompany: false,
-    showMessage: true,
-    messageLabel: "Сообщение",
-    submit: "Отправить заявку",
-  },
-  vacancy: {
-    contactLabel: "Телефон или e-mail",
-    showCompany: false,
-    showMessage: true,
-    messageLabel: "Сопроводительное сообщение / ссылка на резюме",
-    submit: "Откликнуться",
-  },
+function isContactValid(type: ContactType, raw: string): boolean {
+  const v = raw.trim();
+  if (type === "phone") {
+    const digits = v.replace(/\D/g, "");
+    return digits.length >= 7 && digits.length <= 15;
+  }
+  if (type === "email") return z.string().email().safeParse(v).success;
+  return /^@?[a-zA-Z0-9_]{5,32}$/.test(v);
+}
+
+function makeSchema(t: (key: string) => string) {
+  return z
+    .object({
+      name: z.string().min(2, t("validation.name")),
+      contactType: z.enum(contactTypes),
+      contact: z.string().min(1, t("validation.contactRequired")),
+      company: z.string().optional(),
+      message: z.string().optional(),
+      consent: z.literal(true, { message: t("validation.consent") }),
+      website: z.string().max(0).optional(),
+    })
+    .superRefine((val, ctx) => {
+      if (!isContactValid(val.contactType, val.contact)) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["contact"],
+          message: t(`validation.${val.contactType}`),
+        });
+      }
+    });
+}
+
+type FormValues = z.input<ReturnType<typeof makeSchema>>;
+
+const KIND_CONFIG: Record<LeadKind, { showCompany: boolean; showMessage: boolean }> = {
+  callback: { showCompany: false, showMessage: false },
+  quote: { showCompany: true, showMessage: true },
+  contact: { showCompany: false, showMessage: true },
+  vacancy: { showCompany: false, showMessage: true },
 };
 
 const fieldCls =
@@ -68,15 +78,29 @@ export function LeadForm({
   onSuccess?: () => void;
   className?: string;
 }) {
-  const cfg = config[kind];
+  const t = useTranslations("Forms");
+  const cfg = KIND_CONFIG[kind];
+  const schema = useMemo(() => makeSchema(t), [t]);
   const [serverError, setServerError] = useState<string | null>(null);
   const [done, setDone] = useState(false);
 
   const {
     register,
     handleSubmit,
+    watch,
+    setValue,
+    clearErrors,
     formState: { errors, isSubmitting },
-  } = useForm<FormValues>({ resolver: zodResolver(schema) });
+  } = useForm<FormValues>({ resolver: zodResolver(schema), defaultValues: { contactType: "phone" } });
+
+  const contactType = (watch("contactType") ?? "phone") as ContactType;
+  const activeContact = CONTACT_META.find((c) => c.value === contactType)!;
+
+  function selectContactType(type: ContactType) {
+    setValue("contactType", type);
+    setValue("contact", "");
+    clearErrors("contact");
+  }
 
   async function onSubmit(values: FormValues) {
     setServerError(null);
@@ -90,7 +114,7 @@ export function LeadForm({
       setDone(true);
       onSuccess?.();
     } catch {
-      setServerError("Не удалось отправить заявку. Попробуйте позвонить нам.");
+      setServerError(t("serverFail"));
     }
   }
 
@@ -98,10 +122,8 @@ export function LeadForm({
     return (
       <div className={cn("flex flex-col items-center gap-3 py-8 text-center", className)}>
         <CheckCircle2 className="h-12 w-12 text-accent" />
-        <h3 className="text-xl font-bold text-fg">Заявка отправлена</h3>
-        <p className="max-w-sm text-fg-muted">
-          Спасибо! Менеджер MD Supply свяжется с вами в ближайшее рабочее время.
-        </p>
+        <h3 className="text-xl font-bold text-fg">{t("success.title")}</h3>
+        <p className="max-w-sm text-fg-muted">{t("success.text")}</p>
       </div>
     );
   }
@@ -110,48 +132,70 @@ export function LeadForm({
     <form onSubmit={handleSubmit(onSubmit)} className={cn("flex flex-col gap-4", className)} noValidate>
       <div className="hidden" aria-hidden>
         <label>
-          Не заполняйте это поле
+          {t("labels.name")}
           <input type="text" tabIndex={-1} autoComplete="off" {...register("website")} />
         </label>
       </div>
 
-      <Field label="Ваше имя" error={errors.name?.message}>
-        <input className={fieldCls} placeholder="Иван Иванов" autoComplete="name" {...register("name")} />
+      <Field label={t("labels.name")} error={errors.name?.message}>
+        <input className={fieldCls} placeholder={t("labels.namePlaceholder")} autoComplete="name" {...register("name")} />
       </Field>
 
-      <Field label={cfg.contactLabel} error={errors.contact?.message}>
+      <div>
+        <span className="mb-1.5 flex items-center gap-2 text-sm font-medium text-fg">
+          {t("labels.contactHeading")}
+        </span>
+        <div className="mb-2.5 flex gap-1 rounded-xl border border-border-subtle bg-bg p-1">
+          {CONTACT_META.map((c) => (
+            <button
+              key={c.value}
+              type="button"
+              onClick={() => selectContactType(c.value)}
+              aria-pressed={contactType === c.value}
+              className={cn(
+                "flex-1 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
+                contactType === c.value ? "bg-red text-white" : "text-fg-muted hover:text-fg",
+              )}
+            >
+              {t(`contactTypes.${c.value}`)}
+            </button>
+          ))}
+        </div>
+        <input type="hidden" {...register("contactType")} />
         <input
           className={fieldCls}
-          placeholder={kind === "callback" ? "+375 (29) 000-00-00" : "+375 (29) 000-00-00 или e-mail"}
-          autoComplete="tel"
+          placeholder={t(`placeholders.${contactType}`)}
+          inputMode={activeContact.inputMode}
+          autoComplete={activeContact.autoComplete}
           {...register("contact")}
         />
-      </Field>
+        {errors.contact?.message && (
+          <span className="mt-1 block text-sm text-accent">{errors.contact.message}</span>
+        )}
+      </div>
 
       {cfg.showCompany && (
-        <Field label="Компания" optional>
-          <input className={fieldCls} placeholder="Название организации" autoComplete="organization" {...register("company")} />
+        <Field label={t("labels.company")} optional optionalLabel={t("labels.optional")}>
+          <input className={fieldCls} placeholder={t("labels.companyPlaceholder")} autoComplete="organization" {...register("company")} />
         </Field>
       )}
 
       {cfg.showMessage && (
-        <Field label={cfg.messageLabel} optional>
-          <textarea rows={4} className={cn(fieldCls, "resize-none")} placeholder="Кратко опишите запрос" {...register("message")} />
+        <Field label={t(`kinds.${kind}.messageLabel`)} optional optionalLabel={t("labels.optional")}>
+          <textarea rows={4} className={cn(fieldCls, "resize-none")} placeholder={t("labels.messagePlaceholder")} {...register("message")} />
         </Field>
       )}
 
       <label className="flex items-start gap-3 text-sm text-fg-muted">
-        <input
-          type="checkbox"
-          className="mt-0.5 h-4 w-4 shrink-0 accent-red"
-          {...register("consent")}
-        />
+        <input type="checkbox" className="mt-0.5 h-4 w-4 shrink-0 accent-red" {...register("consent")} />
         <span>
-          Я согласен на обработку{" "}
-          <Link href="/privacy" className="text-accent underline underline-offset-2" target="_blank">
-            персональных данных
-          </Link>
-          .
+          {t.rich("labels.consent", {
+            link: (chunks) => (
+              <Link href="/privacy" className="text-accent underline underline-offset-2" target="_blank">
+                {chunks}
+              </Link>
+            ),
+          })}
         </span>
       </label>
       {errors.consent && <p className="-mt-2 text-sm text-accent">{errors.consent.message}</p>}
@@ -163,11 +207,11 @@ export function LeadForm({
       <Button type="submit" size="lg" disabled={isSubmitting} className="mt-1">
         {isSubmitting ? (
           <>
-            <Loader2 className="h-4 w-4 animate-spin" /> Отправка…
+            <Loader2 className="h-4 w-4 animate-spin" /> {t("sending")}
           </>
         ) : (
           <>
-            <Send className="h-4 w-4" /> {cfg.submit}
+            <Send className="h-4 w-4" /> {t(`kinds.${kind}.submit`)}
           </>
         )}
       </Button>
@@ -179,18 +223,20 @@ function Field({
   label,
   error,
   optional,
+  optionalLabel,
   children,
 }: {
   label: string;
   error?: string;
   optional?: boolean;
+  optionalLabel?: string;
   children: React.ReactNode;
 }) {
   return (
     <label className="block">
       <span className="mb-1.5 flex items-center gap-2 text-sm font-medium text-fg">
         {label}
-        {optional && <span className="text-xs font-normal text-fg-muted">необязательно</span>}
+        {optional && <span className="text-xs font-normal text-fg-muted">{optionalLabel}</span>}
       </span>
       {children}
       {error && <span className="mt-1 block text-sm text-accent">{error}</span>}

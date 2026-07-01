@@ -1,20 +1,25 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { AnimatePresence, m } from "framer-motion";
 import { ChevronDown, Mail, Phone, X } from "lucide-react";
+import { Link, usePathname } from "@/i18n/navigation";
 import { Logo } from "@/components/logo";
 import { ThemeToggle } from "./theme-toggle";
+import { LanguageSwitcher } from "./language-switcher";
 import { LeadButton } from "@/components/forms/lead-button";
-import { mainNav, services } from "@/lib/nav";
+import { mainNav, serviceLinks } from "@/lib/nav";
 import { site } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
   const pathname = usePathname();
   const [servicesOpen, setServicesOpen] = useState(false);
+  const tn = useTranslations("Nav.main");
+  const ts = useTranslations("Services.items");
+  const ta = useTranslations("Common.actions");
+  const tc = useTranslations("Common");
 
   useEffect(() => {
     if (!open) return;
@@ -40,7 +45,7 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
           <m.div
             role="dialog"
             aria-modal="true"
-            aria-label="Меню навигации"
+            aria-label={tc("navMenuAria")}
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
@@ -51,7 +56,7 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
               <Logo />
               <button
                 type="button"
-                aria-label="Закрыть меню"
+                aria-label={tc("closeMenu")}
                 onClick={onClose}
                 className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border-subtle text-fg"
               >
@@ -63,14 +68,14 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
               <ul className="flex flex-col">
                 {mainNav.map((item) => (
                   <li key={item.href} className="border-b border-border-subtle/70">
-                    {item.children ? (
+                    {item.hasChildren ? (
                       <div>
                         <button
                           type="button"
                           onClick={() => setServicesOpen((v) => !v)}
                           className="flex w-full items-center justify-between py-3.5 text-left text-base font-medium text-fg"
                         >
-                          Услуги
+                          {tn("services")}
                           <ChevronDown className={cn("h-5 w-5 transition-transform", servicesOpen && "rotate-180")} />
                         </button>
                         <AnimatePresence>
@@ -83,13 +88,13 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
                             >
                               <li>
                                 <Link href="/services" onClick={onClose} className="block py-2.5 pl-3 text-[15px] text-fg-muted hover:text-accent">
-                                  Все услуги
+                                  {ta("allServices")}
                                 </Link>
                               </li>
-                              {services.map((s) => (
+                              {serviceLinks.map((s) => (
                                 <li key={s.href}>
                                   <Link href={s.href} onClick={onClose} className="block py-2.5 pl-3 text-[15px] text-fg-muted hover:text-accent">
-                                    {s.title}
+                                    {ts(`${s.slug}.title`)}
                                   </Link>
                                 </li>
                               ))}
@@ -106,7 +111,7 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
                           pathname === item.href ? "text-accent" : "text-fg",
                         )}
                       >
-                        {item.title}
+                        {tn(item.key)}
                       </Link>
                     )}
                   </li>
@@ -119,13 +124,16 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
                 <a href={site.phone.href} className="flex items-center gap-2 font-semibold text-fg">
                   <Phone className="h-4 w-4 text-accent" /> {site.phone.display}
                 </a>
-                <ThemeToggle />
+                <div className="flex items-center gap-2">
+                  <LanguageSwitcher />
+                  <ThemeToggle />
+                </div>
               </div>
               <a href={`mailto:${site.email}`} className="flex items-center gap-2 text-sm text-fg-muted">
                 <Mail className="h-4 w-4 text-accent" /> {site.email}
               </a>
               <LeadButton kind="callback" size="lg" className="w-full">
-                Заказать звонок
+                {ta("callbackAlt")}
               </LeadButton>
             </div>
           </m.div>

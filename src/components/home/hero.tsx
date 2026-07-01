@@ -1,14 +1,16 @@
 "use client";
 
 import { m } from "framer-motion";
-import { ArrowRight, Check, PackageCheck } from "lucide-react";
+import { useTranslations } from "next-intl";
+import { ArrowRight, Check } from "lucide-react";
 import { Container } from "@/components/ui/container";
-import { ButtonLink } from "@/components/ui/button";
 import { LeadButton } from "@/components/forms/lead-button";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
 export function Hero() {
+  const t = useTranslations("Home.hero");
+  const tc = useTranslations("Common.actions");
   return (
     <section className="relative overflow-hidden bg-ink text-white">
       <div className="absolute inset-0 grid-lines opacity-[0.08]" aria-hidden />
@@ -36,11 +38,13 @@ export function Hero() {
               transition={{ duration: 0.7, delay: 0.08, ease }}
               className="text-[2rem] font-extrabold leading-[1.08] sm:text-5xl lg:text-6xl"
             >
-              Дистрибуция и поставки{" "}
-              <span className="relative whitespace-nowrap">
-                <span className="relative z-10">широкого ассортимента</span>
-              </span>{" "}
-              товаров
+              {t.rich("title", {
+                hl: (chunks) => (
+                  <span className="relative whitespace-nowrap">
+                    <span className="relative z-10">{chunks}</span>
+                  </span>
+                ),
+              })}
             </m.h1>
 
             <m.p
@@ -49,9 +53,7 @@ export function Hero() {
               transition={{ duration: 0.7, delay: 0.16, ease }}
               className="mt-6 max-w-xl text-lg leading-relaxed text-white/75"
             >
-              MD Supply поставляет товары для розницы, HoReCa и интернет-магазинов по всей
-              Беларуси — с надёжной логистикой, прозрачными условиями и полным пакетом
-              документов.
+              {t("subtitle")}
             </m.p>
 
             <m.div
@@ -61,11 +63,8 @@ export function Hero() {
               className="mt-9 flex flex-wrap gap-3"
             >
               <LeadButton kind="quote" size="lg" className="bg-white text-ink hover:bg-white/90">
-                Запросить КП <ArrowRight className="h-4 w-4" />
+                {tc("requestQuote")} <ArrowRight className="h-4 w-4" />
               </LeadButton>
-              <ButtonLink href="/catalog" size="lg" variant="outline" className="border-white/30 text-white hover:border-white hover:text-white">
-                <PackageCheck className="h-4 w-4" /> Смотреть каталог
-              </ButtonLink>
             </m.div>
           </div>
 
@@ -77,16 +76,10 @@ export function Hero() {
           >
             <div className="rounded-3xl border border-white/15 bg-white/5 p-6 backdrop-blur-sm sm:p-7">
               <div className="text-sm font-semibold uppercase tracking-wider text-white/60">
-                Почему MD Supply
+                {t("badge")}
               </div>
               <ul className="mt-5 space-y-3.5">
-                {[
-                  "Опт, розница, HoReCa и интернет-магазины",
-                  "Поставки по всей Республике Беларусь",
-                  "Прямые контракты с производителями",
-                  "Собственная логистика и склад",
-                  "Полный пакет сопроводительных документов",
-                ].map((item) => (
+                {(t.raw("points") as string[]).map((item) => (
                   <li key={item} className="flex items-start gap-3 text-[15px] leading-snug text-white/90">
                     <Check className="mt-0.5 h-5 w-5 shrink-0 text-red-soft" />
                     {item}

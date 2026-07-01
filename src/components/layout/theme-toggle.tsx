@@ -2,9 +2,11 @@
 
 import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
+import { useTranslations } from "next-intl";
 import { Moon, Sun } from "lucide-react";
 
 export function ThemeToggle({ className }: { className?: string }) {
+  const t = useTranslations("Common.theme");
   const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   // Гидратация next-themes: тему знаем только на клиенте.
@@ -16,7 +18,7 @@ export function ThemeToggle({ className }: { className?: string }) {
   return (
     <button
       type="button"
-      aria-label={isDark ? "Светлая тема" : "Тёмная тема"}
+      aria-label={isDark ? t("light") : t("dark")}
       onClick={() => setTheme(isDark ? "light" : "dark")}
       className={
         "inline-flex h-10 w-10 items-center justify-center rounded-full border border-border-subtle text-fg-muted transition-colors hover:border-red hover:text-accent " +

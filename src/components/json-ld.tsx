@@ -1,6 +1,8 @@
+import { getTranslations } from "next-intl/server";
 import { site } from "@/lib/site";
 
-export function OrganizationJsonLd() {
+export async function OrganizationJsonLd() {
+  const t = await getTranslations("Meta");
   const data = {
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -9,7 +11,7 @@ export function OrganizationJsonLd() {
     url: site.url,
     email: site.email,
     telephone: site.phone.display,
-    description: site.description,
+    description: t("description"),
     address: {
       "@type": "PostalAddress",
       streetAddress: "ул. Сухаревская, д. 16, пом. 71",

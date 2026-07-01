@@ -1,48 +1,58 @@
 import type { Metadata } from "next";
+import { setRequestLocale, getTranslations } from "next-intl/server";
+import { localizedAlternates } from "@/i18n/metadata";
 import { Briefcase, GraduationCap, HeartHandshake, MapPin, TrendingUp } from "lucide-react";
 import { PageHeader } from "@/components/layout/page-header";
 import { Section, SectionHeader } from "@/components/ui/section";
 import { Container } from "@/components/ui/container";
 import { LeadButton } from "@/components/forms/lead-button";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/reveal";
-import { jobs } from "@/lib/content";
 
-export const metadata: Metadata = {
-  title: "Вакансии",
-  description:
-    "Вакансии в MD Supply (ООО «МД Сапплай»), Минск: торговые представители, закупки, склад и логистика. Присоединяйтесь к команде.",
-  alternates: { canonical: "/careers" },
-};
+const perkIcons = [TrendingUp, HeartHandshake, GraduationCap];
 
-const perks = [
-  { icon: TrendingUp, title: "Рост и развитие", text: "Обучение, наставничество и карьерные перспективы внутри компании." },
-  { icon: HeartHandshake, title: "Стабильность", text: "Официальное трудоустройство и своевременная оплата труда." },
-  { icon: GraduationCap, title: "Сильная команда", text: "Опытные коллеги и отлаженные процессы работы." },
-];
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "Careers" });
+  return {
+    title: t("meta.title"),
+    description: t("meta.description"),
+    alternates: localizedAlternates(locale, "/careers"),
+  };
+}
 
-export default function CareersPage() {
+export default async function CareersPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  const t = await getTranslations("Careers");
+
+  const perks = t.raw("perks") as { title: string; text: string }[];
+  const jobs = t.raw("jobs") as { title: string; type: string; city: string; desc: string }[];
+
   return (
     <>
       <PageHeader
-        title="Вакансии"
-        description="MD Supply растёт — и мы ищем людей, которые хотят расти вместе с нами. Посмотрите открытые позиции."
-        crumbs={[{ title: "Вакансии" }]}
+        title={t("header.title")}
+        description={t("header.description")}
+        crumbs={[{ title: t("crumb") }]}
       />
 
       <Section>
         <RevealGroup className="mb-16 grid gap-5 md:grid-cols-3">
-          {perks.map((p) => (
-            <RevealItem key={p.title}>
-              <div className="flex h-full flex-col rounded-card border border-border-subtle bg-surface p-7">
-                <p.icon className="h-7 w-7 text-accent" />
-                <h3 className="mt-4 text-lg font-bold text-fg">{p.title}</h3>
-                <p className="mt-2 text-[15px] leading-relaxed text-fg-muted">{p.text}</p>
-              </div>
-            </RevealItem>
-          ))}
+          {perks.map((p, i) => {
+            const Icon = perkIcons[i];
+            return (
+              <RevealItem key={p.title}>
+                <div className="flex h-full flex-col rounded-card border border-border-subtle bg-surface p-7">
+                  <Icon className="h-7 w-7 text-accent" />
+                  <h3 className="mt-4 text-lg font-bold text-fg">{p.title}</h3>
+                  <p className="mt-2 text-[15px] leading-relaxed text-fg-muted">{p.text}</p>
+                </div>
+              </RevealItem>
+            );
+          })}
         </RevealGroup>
 
-        <SectionHeader eyebrow="Открытые позиции" title="Актуальные вакансии" className="mb-10" />
+        <SectionHeader eyebrow={t("openPositions.eyebrow")} title={t("openPositions.title")} className="mb-10" />
         <div className="space-y-4">
           {jobs.map((job, i) => (
             <Reveal key={job.title} delay={i * 0.05}>
@@ -56,7 +66,7 @@ export default function CareersPage() {
                   </div>
                 </div>
                 <LeadButton kind="vacancy" className="shrink-0">
-                  Откликнуться
+                  {t("apply")}
                 </LeadButton>
               </div>
             </Reveal>
@@ -67,13 +77,11 @@ export default function CareersPage() {
       <section className="border-t border-border-subtle bg-bg-soft py-16">
         <Container>
           <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-2xl font-bold text-fg">Не нашли подходящую вакансию?</h2>
-            <p className="mt-3 text-fg-muted">
-              Отправьте резюме — мы свяжемся с вами, когда появится подходящая позиция.
-            </p>
+            <h2 className="text-2xl font-bold text-fg">{t("noMatch.heading")}</h2>
+            <p className="mt-3 text-fg-muted">{t("noMatch.text")}</p>
             <div className="mt-6 flex justify-center">
               <LeadButton kind="vacancy" size="lg">
-                Отправить резюме
+                {t("noMatch.cta")}
               </LeadButton>
             </div>
           </div>

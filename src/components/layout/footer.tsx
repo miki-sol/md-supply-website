@@ -1,12 +1,17 @@
-import Link from "next/link";
+import { getTranslations } from "next-intl/server";
 import { Mail, MapPin, Phone, Send } from "lucide-react";
+import { Link } from "@/i18n/navigation";
 import { Logo } from "@/components/logo";
 import { Container } from "@/components/ui/container";
-import { footerNav } from "@/lib/nav";
+import { footerColumns, serviceLinks } from "@/lib/nav";
 import { site } from "@/lib/site";
 
-export function Footer() {
+export async function Footer() {
   const year = 2026;
+  const tf = await getTranslations("Nav.footer");
+  const tm = await getTranslations("Nav.main");
+  const ts = await getTranslations("Services.items");
+
   return (
     <footer className="border-t border-border-subtle bg-bg-soft">
       <Container>
@@ -14,8 +19,7 @@ export function Footer() {
           <div className="max-w-sm">
             <Logo />
             <p className="mt-4 text-sm leading-relaxed text-fg-muted">
-              {site.legalName} — дистрибуция и поставки широкого ассортимента товаров по всей
-              Республике Беларусь. Опт, розница, HoReCa и интернет-магазины.
+              {tf("intro", { legalName: site.legalName })}
             </p>
             <div className="mt-5 flex gap-2.5">
               <Social href={site.socials.telegram} label="Telegram"><Send className="h-4 w-4" /></Social>
@@ -24,46 +28,63 @@ export function Footer() {
             </div>
           </div>
 
-          {footerNav.map((col) => (
-            <div key={col.title}>
-              <h3 className="mb-4 text-sm font-bold uppercase tracking-wider text-fg">{col.title}</h3>
+          {footerColumns.map((col) => (
+            <div key={col.titleKey}>
+              <h3 className="mb-4 text-sm font-bold uppercase tracking-wider text-fg">{tf(col.titleKey)}</h3>
               <ul className="space-y-2.5">
                 {col.links.map((l) => (
                   <li key={l.href}>
                     <Link href={l.href} className="text-sm text-fg-muted transition-colors hover:text-accent">
-                      {l.title}
+                      {tm(l.key)}
                     </Link>
                   </li>
                 ))}
               </ul>
             </div>
           ))}
+
+          <div>
+            <h3 className="mb-4 text-sm font-bold uppercase tracking-wider text-fg">{tf("servicesTitle")}</h3>
+            <ul className="space-y-2.5">
+              {serviceLinks.map((s) => (
+                <li key={s.href}>
+                  <Link href={s.href} className="text-sm text-fg-muted transition-colors hover:text-accent">
+                    {ts(`${s.slug}.title`)}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
 
         <div className="grid gap-6 border-t border-border-subtle py-8 sm:grid-cols-2 lg:grid-cols-3">
-          <ContactLine icon={<MapPin className="h-5 w-5 text-accent" />} title="Адрес">
+          <ContactLine icon={<MapPin className="h-5 w-5 text-accent" />} title={tf("addressLabel")}>
             {site.address}
           </ContactLine>
-          <ContactLine icon={<Phone className="h-5 w-5 text-accent" />} title="Телефон">
+          <ContactLine icon={<Phone className="h-5 w-5 text-accent" />} title={tf("phoneLabel")}>
             <a href={site.phone.href} className="hover:text-accent">{site.phone.display}</a>
           </ContactLine>
-          <ContactLine icon={<Mail className="h-5 w-5 text-accent" />} title="Почта">
+          <ContactLine icon={<Mail className="h-5 w-5 text-accent" />} title={tf("emailLabel")}>
             <a href={`mailto:${site.email}`} className="hover:text-accent">{site.email}</a>
           </ContactLine>
         </div>
 
         <div className="border-t border-border-subtle py-4 text-xs text-fg-muted">
           <p className="mb-1">
-            {site.requisites.fullName}. УНП {site.requisites.unp}. {site.requisites.address}.
+            {tf("legalLine", {
+              fullName: site.requisites.fullName,
+              unp: site.requisites.unp,
+              address: site.requisites.address,
+            })}
           </p>
         </div>
 
         <div className="flex flex-col items-start justify-between gap-3 border-t border-border-subtle py-5 text-sm text-fg-muted sm:flex-row sm:items-center">
-          <p>© {year} {site.legalName}. Все права защищены.</p>
+          <p>{tf("rights", { year, legalName: site.legalName })}</p>
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
-            <Link href="/privacy" className="hover:text-accent">Политика конфиденциальности</Link>
-            <Link href="/faq" className="hover:text-accent">Вопросы и ответы</Link>
-            <Link href="/careers" className="hover:text-accent">Вакансии</Link>
+            <Link href="/privacy" className="hover:text-accent">{tm("privacy")}</Link>
+            <Link href="/faq" className="hover:text-accent">{tm("faq")}</Link>
+            <Link href="/careers" className="hover:text-accent">{tm("careers")}</Link>
           </div>
         </div>
       </Container>

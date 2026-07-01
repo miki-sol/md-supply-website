@@ -1,15 +1,12 @@
+import { getTranslations } from "next-intl/server";
 import { ArrowRight, FileText } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { ButtonLink } from "@/components/ui/button";
 import { LeadButton } from "@/components/forms/lead-button";
 
-export function CTASection({
-  title = "Готовы обсудить поставки?",
-  text = "Оставьте заявку — менеджер MD Supply подготовит коммерческое предложение под ваш канал продаж и ответит на все вопросы.",
-}: {
-  title?: string;
-  text?: string;
-}) {
+export async function CTASection({ title, text }: { title?: string; text?: string }) {
+  const t = await getTranslations("Common");
+
   return (
     <section className="py-20 sm:py-24">
       <Container>
@@ -21,14 +18,14 @@ export function CTASection({
             aria-hidden
           />
           <div className="relative max-w-2xl">
-            <h2 className="text-3xl font-extrabold leading-tight sm:text-4xl">{title}</h2>
-            <p className="mt-4 text-lg text-white/75">{text}</p>
+            <h2 className="text-3xl font-extrabold leading-tight sm:text-4xl">{title ?? t("cta.title")}</h2>
+            <p className="mt-4 text-lg text-white/75">{text ?? t("cta.text")}</p>
             <div className="mt-8 flex flex-wrap gap-3">
               <LeadButton kind="quote" size="lg" className="bg-white text-ink hover:bg-white/90">
-                Запросить КП <ArrowRight className="h-4 w-4" />
+                {t("actions.requestQuote")} <ArrowRight className="h-4 w-4" />
               </LeadButton>
               <ButtonLink href="/cooperation" size="lg" variant="outline" className="border-white/30 text-white hover:border-white">
-                <FileText className="h-4 w-4" /> Условия сотрудничества
+                <FileText className="h-4 w-4" /> {t("actions.cooperationTerms")}
               </ButtonLink>
             </div>
           </div>
