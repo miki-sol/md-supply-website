@@ -2,15 +2,13 @@
 
 import { m } from "framer-motion";
 import { useTranslations } from "next-intl";
-import { ArrowRight, Check } from "lucide-react";
+import { Check } from "lucide-react";
 import { Container } from "@/components/ui/container";
-import { LeadButton } from "@/components/forms/lead-button";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
 export function Hero() {
   const t = useTranslations("Home.hero");
-  const tc = useTranslations("Common.actions");
   return (
     <section className="relative overflow-hidden bg-ink text-white">
       <div className="absolute inset-0 grid-lines opacity-[0.08]" aria-hidden />
@@ -55,17 +53,6 @@ export function Hero() {
             >
               {t("subtitle")}
             </m.p>
-
-            <m.div
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.24, ease }}
-              className="mt-9 flex flex-wrap gap-3"
-            >
-              <LeadButton kind="quote" size="lg" className="bg-white text-ink hover:bg-white/90">
-                {tc("requestQuote")} <ArrowRight className="h-4 w-4" />
-              </LeadButton>
-            </m.div>
           </div>
 
           <m.div
