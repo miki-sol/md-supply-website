@@ -2,7 +2,7 @@
   "Meta": {
     "tagline": "Wholesale supply and distribution across the CIS",
     "description": "A reliable supplier for retail, wholesale, HoReCa and online stores: direct manufacturer contracts, a broad product range, CIS-wide logistics and a full document package. Requests handled within one business day.",
-    "keywords": "MD Supply|wholesale supplier|CIS distribution|supplier for retail|HoReCa supplier|supplier for online stores|distributor|trading company Minsk|logistics"
+    "keywords": "MD Supply|wholesale supplier|CIS distribution|supplier for retail|HoReCa supplier|supplier for online stores|distributor|logistics"
   },
   "Common": {
     "skipToContent": "Skip to content",
@@ -280,17 +280,17 @@
   "About": {
     "meta": {
       "title": "About Us | MD Supply",
-      "description": "MD Supply (MD Supply LLC) is a trading company based in Minsk. Our mission, values, work approach, and wholesale distribution across the CIS."
+      "description": "MD Supply (MD Supply LLC) is a reliable supplier for retail, wholesale, HoReCa and online stores. Our mission, values, work approach, and wholesale distribution across the CIS."
     },
     "crumb": "About",
     "header": {
       "title": "About MD Supply",
-      "description": "We are a Minsk-based trading company delivering wholesale supply and distribution of a wide product range across the CIS."
+      "description": "A reliable supplier for retail, wholesale, HoReCa and online stores: direct manufacturer contracts, a broad product range, CIS-wide logistics and a full document package. Requests handled within one business day."
     },
     "whoWeAre": {
       "eyebrow": "Who We Are",
       "title": "The reliable link between manufacturer and point of sale",
-      "p1": "{legalName} is a trading company based in Minsk. We build a distribution model that covers the full journey of a product — from procurement at the manufacturer to shelf presence and sales growth for our partners.",
+      "p1": "{legalName} is a wholesale supplier and distributor of a broad product range. We build a distribution model that covers the full journey of a product — from procurement at the manufacturer to shelf presence and sales growth for our partners.",
       "p2": "We supply goods to retail chains, neighborhood stores, HoReCa venues, and online stores across the CIS. The team behind the company brings hands-on experience in procurement, sales, and logistics.",
       "p3": "Our core value is partner relationships built on accountability, transparent terms, and reliable deliveries."
     },
